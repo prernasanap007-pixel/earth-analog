@@ -7,7 +7,7 @@ Platform Overview:
 Orbital Editorial provides an interactive celestial experience exploring Earth, the Moon, and their comparative relationship in space, grounded in verified NASA and USGS orbital science telemetry.
 
 Pages:
-- index.html       — Overview, Hero (Earth from orbit), and Celestial Spheres Live Telemetry (Earth vs Moon)
+- index.html       — Overview, Hero (Earth from orbit), 60-Sec Interactive Video Tour & Mission Briefing, 3-Step Quick Start Explainer, 10-Sec Concept Demo, and Celestial Spheres Live Telemetry (Earth vs Moon)
 - compare.html     — 7 Side-by-Side Terrestrial & Selenological Analog Pairs with filters, search, sorting, and interactive surface gravity/jump simulator
 - explore.html     — Lunar Exploration Beacons: Apollo Crewed Landings (6), Craters & Massifs (8), Robotic Landers (5), Lunar Maria (4), and Asteroids (5)
 - results.html     — Global Terrestrial Field Stations Radar Map & Selenological Matrix Table

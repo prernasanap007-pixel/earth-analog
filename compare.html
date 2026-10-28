@@ -34,6 +34,9 @@
             <a href="about.html">About</a>
         </nav>
         <div class="topbar-actions">
+            <a class="btn btn-ghost btn-sm btn-video-topbar" href="index.html#intro-video-section" title="Watch 60-Second Video Tour">
+                <span style="color: var(--amber);">▶</span> <span>Intro Video</span>
+            </a>
             <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
                 <span>🎨</span> <span>Theme</span>
             </button>
@@ -244,6 +247,7 @@
                 const earthSwing = Math.abs(p.earth.metrics.tempMaxCelsius - p.earth.metrics.tempMinCelsius);
                 const moonSwing = Math.abs(p.moon.metrics.tempMaxCelsius - p.moon.metrics.tempMinCelsius);
                 const thermalVariance = Math.abs(earthSwing - moonSwing);
+                const bookmarked = typeof isBookmarked === 'function' ? isBookmarked(p.id) : false;
 
                 return `
                     <article class="pair-card" id="${p.id}">
@@ -253,9 +257,17 @@
                                 <h2 class="pair-title">${p.title}</h2>
                                 <span class="pair-category-pill">${p.categoryLabel}</span>
                             </div>
-                            <button class="btn btn-primary btn-sm" onclick="openDifferentialModal('${p.id}')">
-                                Compare Full Details &rarr;
-                            </button>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <button class="card-bookmark-btn ${bookmarked ? 'active' : ''}" 
+                                        data-id="${p.id}" 
+                                        onclick="toggleBookmark('${p.id}', '${p.title}', '${p.categoryLabel}', 'compare.html#${p.id}', '🏔️')" 
+                                        title="${bookmarked ? 'Remove bookmark' : 'Save to favorites'}">
+                                    ${bookmarked ? '★' : '☆'}
+                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="openDifferentialModal('${p.id}')">
+                                    Compare Full Details &rarr;
+                                </button>
+                            </div>
                         </div>
 
                         <div class="pair-comparison-row">
@@ -391,6 +403,9 @@
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
             renderPairs();
+            if (typeof updateBookmarkUI === 'function') {
+                updateBookmarkUI();
+            }
         });
     </script>
 </body>
