@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About the Atlas &amp; Scientific Citations — Earth &amp; Moon Atlas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Lookalike Pairs</a>
+            <a href="explore.html">Moon Landmarks</a>
+            <a href="results.html">Stations Map</a>
+            <a href="location.html">Site Details</a>
+            <a href="methodology.html">Astrophysics</a>
+            <a href="about.html" class="active">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="compare.html">Compare Places &rarr;</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">📖 ABOUT THE ATLAS • MISSION &amp; METHODOLOGY</span>
+                <h1>How Earth Prepares Humanity to Walk on the Moon</h1>
+                <p>An accessible educational exploration of the profound physical and geological relationship between Earth and our celestial companion.</p>
+            </div>
+        </div>
+
+        <!-- Friendly Beginner Helper Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>Why does this Atlas exist?</h4>
+                <p>
+                    Most people know the Moon is dusty and gray, but few know that Earth has dozens of active space-testing grounds that look like exact copies of lunar terrain! This platform translates real NASA, ESA, and USGS orbital science into clear, visual, and engaging comparisons for everyone.
+                </p>
+            </div>
+        </div>
+
+        <section class="card" style="padding: 28px; margin-bottom: 28px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center;">
+            <div>
+                <span class="eyebrow-accent">🌍 EARTH AS OUR TRAINING GROUND</span>
+                <h2 style="font-size: 24px; margin: 6px 0 12px;">Testing the future of space exploration right here on Earth.</h2>
+                <p style="color: var(--text-dim); line-height: 1.7; font-size: 13.5px; margin-bottom: 18px;">
+                    From hyper-arid deserts in South America to deep volcanic lava tubes in the Canary Islands and frozen valleys in Antarctica, Earth preserves extreme environments that closely match lunar geology, temperature swings, and isolation. Scientists and astronauts use these stations to test spacesuit agility, rover wheels, solar batteries, and life-support shelters before flight.
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="compare.html" class="btn btn-primary btn-sm">Explore 7 Lookalike Pairs &rarr;</a>
+                    <a href="methodology.html" class="btn btn-ghost btn-sm">Try Gravity Engine &rarr;</a>
+                </div>
+            </div>
+            <div style="background: var(--card-surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 22px;">
+                <span class="eyebrow-accent" style="color: var(--accent);">ATLAS COVERAGE</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: var(--muted); display: block;">LOOKALIKE PAIRS</span>
+                        <b style="font-size: 22px; font-weight: 800; color: var(--accent); display: block;">07 Pairs</b>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: var(--muted); display: block;">APOLLO LANDINGS</span>
+                        <b style="font-size: 22px; font-weight: 800; color: var(--blue); display: block;">06 Sites</b>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: var(--muted); display: block;">GIANT CRATERS</span>
+                        <b style="font-size: 22px; font-weight: 800; color: var(--text); display: block;">08 Landmarks</b>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 600; color: var(--muted); display: block;">ROBOTIC PROBES</span>
+                        <b style="font-size: 22px; font-weight: 800; color: var(--amber); display: block;">05 Probes</b>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scientific Data Sources Citations -->
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🔬 VERIFIED OPEN DATA • OFFICIAL SOURCES</span>
+                <h2>Official Space Agency Datasets Cited</h2>
+                <p>All coordinates, elevations, temperatures, and mission facts link directly to verified public space repositories.</p>
+            </div>
+        </div>
+
+        <div class="grid-two" style="margin-bottom: 28px;">
+            <article class="card">
+                <span class="eyebrow-accent">NASA PLANETARY DATA SYSTEM (PDS)</span>
+                <h3 style="margin: 6px 0 8px;">PDS Geosciences &amp; Mapping</h3>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px;">
+                    NASA's official archive for all solar system mission measurements. Provides digital 3D elevation maps, Diviner heat radiometer scans, and multispectral color images.
+                </p>
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    Open NASA PDS Archive &rarr;
+                </a>
+            </article>
+
+            <article class="card">
+                <span class="eyebrow-accent">USGS ASTROGEOLOGY SCIENCE CENTER</span>
+                <h3 style="margin: 6px 0 8px;">Planetary Cartography &amp; Geology</h3>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px;">
+                    Maintains the official global coordinate system and topographic contour maps of the Moon, assessing boulder hazards and safe landing slopes.
+                </p>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    Open USGS Astrogeology &rarr;
+                </a>
+            </article>
+
+            <article class="card">
+                <span class="eyebrow-accent">NASA APOLLO LUNAR SURFACE ARCHIVE</span>
+                <h3 style="margin: 6px 0 8px;">Apollo Lunar Surface Journal (ALSJ)</h3>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px;">
+                    Official transcripts, audio recordings, moonwalk timelines, and Hasselblad film photographs from Apollo 11 through Apollo 17 (382 kg of returned moon rocks).
+                </p>
+                <a href="https://www.nasa.gov/mission/apollo/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    View Apollo Mission Logs &rarr;
+                </a>
+            </article>
+
+            <article class="card">
+                <span class="eyebrow-accent">LROC • ARIZONA STATE UNIVERSITY</span>
+                <h3 style="margin: 6px 0 8px;">Lunar Reconnaissance Orbiter Camera</h3>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px;">
+                    Sub-meter sharp camera images capable of spotting Apollo descent stages, rover tracks, and deep shadowed craters where water ice is trapped.
+                </p>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    Browse LROC Moon Photos &rarr;
+                </a>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+</body>
+</html>

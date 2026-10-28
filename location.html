@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Field Station Evaluation — Earth &amp; Moon Atlas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Lookalike Pairs</a>
+            <a href="explore.html">Moon Landmarks</a>
+            <a href="results.html">Stations Map</a>
+            <a href="location.html" class="active">Site Details</a>
+            <a href="methodology.html">Astrophysics</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="compare.html">Compare Places &rarr;</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🔬 FIELD TESTING &amp; MISSION PREPARATION</span>
+                <h1>Earth Field Station Evaluation</h1>
+                <p>Select any testing station from the dropdown to see how its rocks, extreme temperatures, and terrain prepare astronauts and rovers for the Moon.</p>
+            </div>
+            <!-- Station Selector Dropdown -->
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <label style="font-size: 12.5px; font-weight: 700; color: var(--text-dim);">SELECT FIELD STATION:</label>
+                <select class="select-box" id="station-picker" onchange="loadStation(this.value)">
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Friendly Beginner Helper Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>Why do we evaluate candidate testing sites on Earth?</h4>
+                <p>
+                    Sending a rover or an astronaut to the Moon is extremely high risk. Testing navigation software, spacesuit joints, and power systems in Earth's harshest volcanic plateaus and caves ensures equipment works reliably before launch!
+                </p>
+            </div>
+        </div>
+
+        <!-- Station Hero Display -->
+        <section class="card" id="station-hero" style="min-height: 280px; position: relative; overflow: hidden; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 28px;">
+            <div id="station-hero-bg" style="position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.45;"></div>
+            <div style="position: relative; z-index: 2;">
+                <span class="eyebrow-accent" id="station-designation" style="color: #ffffff; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 4px; backdrop-filter: blur(8px);">ATC-CHJ-5050 • TERRESTRIAL TESTING SITE</span>
+                <h2 id="station-name" style="font-size: 32px; font-weight: 800; color: #ffffff; margin: 6px 0 8px; text-shadow: 0 2px 16px rgba(0,0,0,0.8);">Atacama Desert (ALMA Chajnantor)</h2>
+                <p id="station-summary" style="color: #f1f5f9; max-width: 820px; font-size: 14px; line-height: 1.6; text-shadow: 0 1px 8px rgba(0,0,0,0.8);">
+                    Driest non-polar region on Earth. The 66 radio antennas of ALMA operate at 5,050 meters altitude where atmospheric water vapor drops below 0.1 mm.
+                </p>
+            </div>
+        </section>
+
+        <!-- Two-column detailed breakdown -->
+        <div class="grid-two" style="margin-bottom: 28px;">
+            <!-- Key Telemetry & Specs -->
+            <article class="card">
+                <span class="eyebrow-accent">📊 ENVIRONMENTAL PARAMETERS</span>
+                <h3 style="margin: 8px 0 16px;">Field Measurements &amp; Data</h3>
+                <div id="station-metrics-list" style="display: flex; flex-direction: column; gap: 10px;">
+                    <!-- Populated by JS -->
+                </div>
+            </article>
+
+            <!-- Scientific Significance & Selenological Match -->
+            <article class="card">
+                <span class="eyebrow-accent">🌕 LUNAR LOOKALIKE MATCH</span>
+                <h3 style="margin: 8px 0 16px;">Why it Matches Lunar Conditions</h3>
+                
+                <div class="science-box" style="margin-bottom: 16px;">
+                    <span class="science-label">Matching Site on the Moon:</span>
+                    <p id="station-moon-target" style="font-weight: 800; font-size: 14.5px; color: var(--amber);"></p>
+                    <p id="station-moon-region" style="font-size: 12px; color: var(--muted); margin-top: 2px;"></p>
+                </div>
+
+                <div class="thematic-callout" style="margin-bottom: 16px;">
+                    <b>💡 WHY THEY ARE LOOKALIKES:</b>
+                    <span id="station-thematic"></span>
+                </div>
+
+                <div class="science-box">
+                    <span class="science-label">🚀 Mission Testing Relevance:</span>
+                    <p id="station-significance"></p>
+                </div>
+
+                <button class="btn btn-primary btn-sm full" id="inspect-diff-btn" style="margin-top: 18px; width: 100%;">
+                    Compare Side-by-Side with Moon Twin &rarr;
+                </button>
+            </article>
+        </div>
+
+        <!-- Field Operational Testing Suitability -->
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🛠️ SUBSYSTEM VALIDATION</span>
+                <h2>What Space Hardware is Tested Here?</h2>
+            </div>
+        </div>
+
+        <div class="grid-three" style="margin-bottom: 28px;">
+            <div class="card">
+                <span class="eyebrow-accent" style="color: var(--blue);">🚜 ROBOT ROVERS</span>
+                <h4 style="margin: 6px 0 8px;">Autonomous Driving &amp; Wheels</h4>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+                    Testing robot cameras, rock hazard avoidance, wheel grip in dusty sand, and traction algorithms across barren volcanic terrain.
+                </p>
+            </div>
+            <div class="card">
+                <span class="eyebrow-accent" style="color: var(--amber);">🧑‍🚀 SPACESUITS (EVA)</span>
+                <h4 style="margin: 6px 0 8px;">Dust Protection &amp; Flexibility</h4>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+                    Testing astronaut suit knee/elbow flexibility, airtight gloves, visor glare shields, and protection against sharp abrasive moon dust.
+                </p>
+            </div>
+            <div class="card">
+                <span class="eyebrow-accent" style="color: var(--green);">🏠 LUNAR BASES &amp; OXYGEN</span>
+                <h4 style="margin: 6px 0 8px;">Lava Cave Shelters &amp; Ice Mining</h4>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+                    Simulating subterranean lava caves for radiation shelters, deep permafrost drilling, and extracting oxygen from volcanic minerals.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+    <script>
+        let selectedPairId = 'pair-plains-arid'; // Default to Atacama Desert
+
+        function initPicker() {
+            const picker = document.getElementById('station-picker');
+            picker.innerHTML = ANALOG_PAIRS.map(p => `
+                <option value="${p.id}" ${p.id === selectedPairId ? 'selected' : ''}>
+                    ${p.earth.name} (${p.earth.region.split(',')[0]})
+                </option>
+            `).join('');
+            loadStation(selectedPairId);
+        }
+
+        function loadStation(pairId) {
+            selectedPairId = pairId;
+            const pair = ANALOG_PAIRS.find(p => p.id === pairId);
+            if (!pair) return;
+
+            document.getElementById('station-hero-bg').style.backgroundImage = `linear-gradient(0deg, rgba(11, 19, 41, 0.95) 0%, rgba(11, 19, 41, 0.45) 100%), url('${pair.earth.imageUrl}')`;
+            document.getElementById('station-designation').textContent = `📍 ${pair.earth.designation} • FIELD TESTING SITE`;
+            document.getElementById('station-name').textContent = pair.earth.name;
+            document.getElementById('station-summary').textContent = pair.earth.summary;
+
+            document.getElementById('station-moon-target').textContent = `🌕 ${pair.moon.name} (${pair.moon.designation})`;
+            document.getElementById('station-moon-region').textContent = `📍 ${pair.moon.region}`;
+            document.getElementById('station-thematic').textContent = pair.thematicParallels;
+            document.getElementById('station-significance').textContent = pair.earth.scientificSignificance;
+
+            document.getElementById('inspect-diff-btn').onclick = () => openDifferentialModal(pair.id);
+
+            const metricsList = document.getElementById('station-metrics-list');
+            metricsList.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--card-surface); border:1px solid var(--line); border-radius:6px;">
+                    <span style="font-size:12px; font-weight:600; color:var(--muted);">📍 Geographic Coordinates:</span>
+                    <b style="font-family:var(--font-mono); font-size:12px;">${pair.earth.coordinatesFormatted}</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--card-surface); border:1px solid var(--line); border-radius:6px;">
+                    <span style="font-size:12px; font-weight:600; color:var(--muted);">🏔️ Field Elevation:</span>
+                    <b style="font-weight:700;">${pair.earth.metrics.elevationMeters > 0 ? '+' : ''}${pair.earth.metrics.elevationMeters.toLocaleString()} meters</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--card-surface); border:1px solid var(--line); border-radius:6px;">
+                    <span style="font-size:12px; font-weight:600; color:var(--muted);">🌡️ Operational Temperatures:</span>
+                    <b style="font-weight:700;">${pair.earth.metrics.tempMinCelsius}°C to ${pair.earth.metrics.tempMaxCelsius}°C</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--card-surface); border:1px solid var(--line); border-radius:6px;">
+                    <span style="font-size:12px; font-weight:600; color:var(--muted);">💨 Air Pressure:</span>
+                    <b style="font-weight:700;">${pair.earth.metrics.atmosphereKpa.toLocaleString()} kPa</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--card-surface); border:1px solid var(--line); border-radius:6px;">
+                    <span style="font-size:12px; font-weight:600; color:var(--muted);">⚖️ Surface Gravity:</span>
+                    <b style="font-weight:700;">${pair.earth.metrics.gravityMps2.toFixed(2)} m/s² (1.00g Normal)</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--card-surface); border:1px solid var(--line); border-radius:6px;">
+                    <span style="font-size:12px; font-weight:600; color:var(--muted);">🏷️ Terrain Category:</span>
+                    <b style="color:var(--accent); font-weight:700;">${pair.categoryLabel}</b>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPicker();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moon Landmarks, Apollo Landings &amp; Asteroids — Earth &amp; Moon Atlas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Lookalike Pairs</a>
+            <a href="explore.html" class="active">Moon Landmarks</a>
+            <a href="results.html">Stations Map</a>
+            <a href="location.html">Site Details</a>
+            <a href="methodology.html">Astrophysics</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="compare.html">Compare Places &rarr;</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🌕 CELESTIAL LANDMARKS &amp; HISTORIC MISSIONS</span>
+                <h1>Moon Landing Sites, Craters &amp; Asteroids</h1>
+                <p>Discover real astronaut moonwalk sites, giant meteorite craters, robotic landers, ancient volcanic plains, and nearby deep-space asteroids.</p>
+            </div>
+            <div class="search-box" style="min-width: 280px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="beacon-search" placeholder="Search by mission, astronaut, crater..." oninput="filterBeacons()">
+            </div>
+        </div>
+
+        <!-- Friendly Beginner Helper Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>Explore the Landmarks of Lunar Exploration:</h4>
+                <p>
+                    Switch between tabs below to view the 6 Apollo missions where 12 human astronauts walked on the Moon, explore giant impact craters that shaped lunar geology, or see robotic rovers and deep space rendezvous asteroids!
+                </p>
+            </div>
+        </div>
+
+        <!-- Tab Navigation for Beacons -->
+        <div class="tab-navigation" id="beacon-tabs">
+            <button class="tab-btn active" data-tab="apollo" onclick="setBeaconTab('apollo')">👨‍🚀 Apollo Moonwalks (6)</button>
+            <button class="tab-btn" data-tab="craters" onclick="setBeaconTab('craters')">🌋 Giant Craters &amp; Peaks (8)</button>
+            <button class="tab-btn" data-tab="robotic" onclick="setBeaconTab('robotic')">🤖 Robot Landers (5)</button>
+            <button class="tab-btn" data-tab="maria" onclick="setBeaconTab('maria')">🌑 Ancient Volcanic Seas (4)</button>
+            <button class="tab-btn" data-tab="asteroids" onclick="setBeaconTab('asteroids')">☄️ Asteroids (5)</button>
+        </div>
+
+        <!-- Beacons Grid Container -->
+        <div class="beacon-grid" id="beacon-grid">
+            <!-- Dynamically populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+    <script>
+        let currentTab = 'apollo';
+        let searchQuery = '';
+
+        function setBeaconTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('#beacon-tabs button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tab);
+            });
+            renderBeacons();
+        }
+
+        function filterBeacons() {
+            searchQuery = document.getElementById('beacon-search').value.toLowerCase().trim();
+            renderBeacons();
+        }
+
+        function renderBeacons() {
+            const grid = document.getElementById('beacon-grid');
+            let items = [];
+
+            if (currentTab === 'apollo') items = [...APOLLO_MISSIONS];
+            else if (currentTab === 'craters') items = [...CRATERS_MASSIFS];
+            else if (currentTab === 'robotic') items = [...ROBOTIC_LANDERS];
+            else if (currentTab === 'maria') items = [...LUNAR_MARIA];
+            else if (currentTab === 'asteroids') items = [...ASTEROIDS];
+
+            if (searchQuery) {
+                items = items.filter(it => {
+                    const text = (
+                        (it.name || '') + ' ' + 
+                        (it.region || '') + ' ' + 
+                        (it.description || '') + ' ' + 
+                        (it.featureDescription || '') + ' ' +
+                        (it.astronauts ? it.astronauts.join(' ') : '')
+                    ).toLowerCase();
+                    return text.includes(searchQuery);
+                });
+            }
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;" class="card">
+                        <h3 style="color: var(--accent); margin-bottom: 8px;">No Landmarks Found</h3>
+                        <p style="color: var(--muted);">No records matched your search in this category. Try another keyword!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(it => {
+                // If it's an asteroid
+                if (currentTab === 'asteroids') {
+                    return `
+                        <article class="beacon-card">
+                            <div class="beacon-thumb">
+                                <img src="${it.image}" alt="${it.name}" loading="lazy" onerror="this.src='assets/images/Asteroid_Bennu-1_f1af1811.jpeg'">
+                                <span class="beacon-badge">☄️ ${it.type}</span>
+                                <span class="beacon-coords">Size: ${it.diameter}</span>
+                            </div>
+                            <div class="beacon-content">
+                                <span class="beacon-region">📍 Deep Space Target</span>
+                                <h3 class="beacon-title">${it.name}</h3>
+                                <p class="beacon-desc">Studied by robotic spacecraft to collect pristine space dust samples and test planetary defense techniques that protect Earth from incoming meteorites.</p>
+                                <div class="beacon-stats-table">
+                                    <div class="beacon-stat">
+                                        <span>Space Mission</span>
+                                        <b>${it.mission}</b>
+                                    </div>
+                                    <div class="beacon-stat">
+                                        <span>Asteroid Type</span>
+                                        <b>${it.type}</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }
+
+                // If it's Apollo crewed
+                if (currentTab === 'apollo') {
+                    return `
+                        <article class="beacon-card">
+                            <div class="beacon-thumb">
+                                <img src="${it.referenceImage}" alt="${it.name}" loading="lazy" onerror="this.src='assets/images/art002e009287_large_68a78c5e.jpg'">
+                                <span class="beacon-badge">🚀 ${it.date}</span>
+                                <span class="beacon-coords">${it.coordinatesFormatted}</span>
+                            </div>
+                            <div class="beacon-content">
+                                <span class="beacon-region">📍 Landing Site: ${it.region}</span>
+                                <h3 class="beacon-title">${it.name}</h3>
+                                <p class="beacon-desc">${it.description}</p>
+                                
+                                ${it.quote ? `<div class="beacon-quote">${it.quote}</div>` : ''}
+
+                                <div class="beacon-stats-table">
+                                    <div class="beacon-stat">
+                                        <span>Moonwalker Astronauts</span>
+                                        <b>${it.landedAstronauts.join(' & ')}</b>
+                                    </div>
+                                    <div class="beacon-stat">
+                                        <span>Lander Module</span>
+                                        <b>${it.lunarModule}</b>
+                                    </div>
+                                    <div class="beacon-stat">
+                                        <span>Moonwalk Time (EVAs)</span>
+                                        <b>${it.evaCount} walks (${it.evaDuration})</b>
+                                    </div>
+                                    <div class="beacon-stat">
+                                        <span>Moon Rocks Returned</span>
+                                        <b style="color: var(--amber); font-weight: 800;">${it.samplesReturnedKg} kg brought home</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }
+
+                // For craters, robotic, maria
+                const imgSrc = it.referenceImage || (currentTab === 'craters' ? 'assets/images/lunarorb_copernicus_000b6074.jpg' : 'assets/images/plato_152a6d98.jpg');
+                return `
+                    <article class="beacon-card">
+                        <div class="beacon-thumb">
+                            <img src="${imgSrc}" alt="${it.name}" loading="lazy" onerror="this.src='assets/images/lunarorb_copernicus_000b6074.jpg'">
+                            <span class="beacon-badge">${it.categoryLabel}</span>
+                            ${it.coordinatesFormatted ? `<span class="beacon-coords">${it.coordinatesFormatted}</span>` : ''}
+                        </div>
+                        <div class="beacon-content">
+                            <span class="beacon-region">📍 ${it.region || 'Lunar Region'}</span>
+                            <h3 class="beacon-title">${it.name}</h3>
+                            <p class="beacon-desc">${it.description || it.featureDescription || ''}</p>
+                            
+                            <div class="beacon-stats-table">
+                                ${it.mission ? `
+                                    <div class="beacon-stat">
+                                        <span>Space Probe Mission</span>
+                                        <b>${it.mission}</b>
+                                    </div>
+                                ` : ''}
+                                ${it.date ? `
+                                    <div class="beacon-stat">
+                                        <span>Landing Date</span>
+                                        <b>${it.date}</b>
+                                    </div>
+                                ` : ''}
+                                ${it.referenceCredit ? `
+                                    <div class="beacon-stat" style="grid-column: 1 / -1;">
+                                        <span>Image Source</span>
+                                        <b>${it.referenceCredit}</b>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBeacons();
+        });
+    </script>
+</body>
+</html>

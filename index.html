@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Earth &amp; Moon Atlas — Orbital Editorial &amp; Comparative Telemetry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html" class="active">Overview</a>
+            <a href="compare.html">Lookalike Pairs</a>
+            <a href="explore.html">Moon Landmarks</a>
+            <a href="results.html">Stations Map</a>
+            <a href="location.html">Site Details</a>
+            <a href="methodology.html">Astrophysics</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="compare.html">Compare Places &rarr;</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (Preserving Earth Image on Homepage as explicitly requested) -->
+        <section class="hero-panel">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🌍 EXPLORING TWO WORLDS • EARTH &amp; THE MOON</span>
+                </div>
+                <h1 class="hero-title">Earth &amp; Moon Comparative Atlas</h1>
+                <p class="hero-subtitle">Discover how places on Earth help us explore the Moon — explained simply with verified NASA science.</p>
+                <p class="hero-desc">
+                    Ever wondered how astronauts train for lunar missions? By finding extreme places on Earth that look and feel just like the Moon. Explore side-by-side terrain matches, jump height simulators, and planetary facts grounded in NASA &amp; USGS orbital data.
+                </p>
+                <div class="hero-buttons">
+                    <a href="compare.html" class="btn btn-primary">Explore 7 Lookalike Pairs &rarr;</a>
+                    <a href="explore.html" class="btn btn-ghost">Moon Landing Sites &amp; Craters &rarr;</a>
+                    <a href="methodology.html" class="btn btn-ghost">Planetary Physics &amp; Gravity &rarr;</a>
+                </div>
+            </div>
+            <div class="feature-strip">
+                <div class="feature-strip-item">
+                    <span>384,400 KM</span>
+                    <small>Average Distance to Moon</small>
+                </div>
+                <div class="feature-strip-item">
+                    <span>1/6th GRAVITY</span>
+                    <small>You Weigh 6× Less on Moon</small>
+                </div>
+                <div class="feature-strip-item">
+                    <span>7 ANALOG PAIRS</span>
+                    <small>Earth vs Moon Lookalikes</small>
+                </div>
+                <div class="feature-strip-item">
+                    <span>6 APOLLO SITES</span>
+                    <small>Historic Moonwalks &amp; Rocks</small>
+                </div>
+                <div class="feature-strip-item">
+                    <span>NASA / USGS</span>
+                    <small>Verified Space Mission Data</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friendly Beginner Guide Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>What are Earth &amp; Moon Lookalikes ("Analogs")?</h4>
+                <p>
+                    Before NASA and ESA send expensive rovers and astronauts into space, they test their equipment in extreme environments right here on Earth! From bone-dry Chilean deserts to frozen Antarctic valleys and subterranean lava caves, Earth preserves incredible places that mirror the geology and harsh conditions of the Moon.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 1: Celestial Spheres Live Telemetry Board -->
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🪐 TWO CELESTIAL BODIES • SIDE-BY-SIDE</span>
+                <h1>Planet Earth vs The Moon at a Glance</h1>
+                <p>Compare the key facts, size, gravity, and atmospheres of our home planet and its closest celestial neighbor.</p>
+            </div>
+            <a href="methodology.html" class="btn btn-ghost btn-sm">Interactive Gravity Calculator &rarr;</a>
+        </div>
+
+        <section class="telemetry-board">
+            <!-- Earth Card -->
+            <div class="sphere-card earth-side">
+                <div class="sphere-header">
+                    <div>
+                        <span class="sphere-tag">🌍 OUR HOME PLANET</span>
+                        <h2>Planet Earth</h2>
+                    </div>
+                    <span style="font-weight: 700; font-size: 13px; color: var(--blue);">1.00g Normal Gravity</span>
+                </div>
+                <p class="sphere-desc">
+                    A vibrant blue marble covered with deep oceans, an oxygen-rich atmosphere that sustains life, and an active magnetic field that shields us from harmful solar radiation.
+                </p>
+                <div class="sphere-metrics-table">
+                    <div class="metric-cell">
+                        <span>Equatorial Radius (Size)</span>
+                        <b>6,378 km</b>
+                        <small>Nearly 4× wider than Moon</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Surface Gravity</span>
+                        <b>9.81 m/s² (1.00g)</b>
+                        <small>Our normal Earth weight</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Planetary Mass</span>
+                        <b>5.97 × 10²⁴ kg</b>
+                        <small>81× heavier than the Moon</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Speed to Reach Space</span>
+                        <b>11.2 km/s (40,300 km/h)</b>
+                        <small>Escape velocity threshold</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Atmosphere</span>
+                        <b>78% Nitrogen, 21% Oxygen</b>
+                        <small>Full breathable air pressure</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Natural Radiation Shield</span>
+                        <b>Low (2.4 mSv/year)</b>
+                        <small>Protected by magnetic field</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Axial Tilt (Seasons)</span>
+                        <b>23.44°</b>
+                        <small>Gives Earth summer &amp; winter</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Day Length</span>
+                        <b>24 Hours</b>
+                        <small>One full day/night rotation</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moon Card -->
+            <div class="sphere-card moon-side">
+                <div class="sphere-header">
+                    <div>
+                        <span class="sphere-tag">🌕 NATURAL SATELLITE</span>
+                        <h2>The Moon</h2>
+                    </div>
+                    <span style="font-weight: 700; font-size: 13px; color: var(--amber);">0.165g (1/6th Gravity)</span>
+                </div>
+                <p class="sphere-desc">
+                    A timeless, crater-covered world with no air and no weather. Because there is no wind or water erosion, footprints left by Apollo astronauts over 50 years ago remain untouched.
+                </p>
+                <div class="sphere-metrics-table">
+                    <div class="metric-cell">
+                        <span>Mean Radius (Size)</span>
+                        <b>1,737 km (27% of Earth)</b>
+                        <small>Roughly the width of Australia</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Surface Gravity</span>
+                        <b>1.62 m/s² (0.165g)</b>
+                        <small>You weigh 6× less here!</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Lunar Mass</span>
+                        <b>7.34 × 10²² kg (1.2%)</b>
+                        <small>Light celestial body</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Speed to Reach Space</span>
+                        <b>2.38 km/s (8,570 km/h)</b>
+                        <small>Much easier to launch rockets!</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Atmosphere</span>
+                        <b>Near-Total Vacuum</b>
+                        <small>No air to breathe or trap heat</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Space Radiation</span>
+                        <b>High (380–420 mSv/yr)</b>
+                        <small>Astronauts need shielded bases</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Axial Tilt</span>
+                        <b>1.54°</b>
+                        <small>Permanent shadows in craters</small>
+                    </div>
+                    <div class="metric-cell">
+                        <span>Day Length</span>
+                        <b>29.5 Earth Days</b>
+                        <small>2 weeks of sun, 2 weeks night</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Core Platform Navigation Grid -->
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🚀 INTERACTIVE MODULES</span>
+                <h1>Explore the Earth &amp; Moon Dashboard</h1>
+                <p>Everything is easy to navigate — compare lookalike terrain, browse Apollo moonwalk photos, or test our live physics tools.</p>
+            </div>
+        </div>
+
+        <div class="grid-three">
+            <a class="card" href="compare.html">
+                <span class="eyebrow-accent">01 • LOOKALIKE PAIRS</span>
+                <h3 style="margin: 8px 0;">7 Side-by-Side Earth &amp; Moon Pairs</h3>
+                <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
+                    See extreme Earth mountains, deep ocean trenches, and volcanic caves matched directly with their lunar counterparts.
+                </p>
+                <span class="btn btn-ghost btn-sm">Explore Pairs &rarr;</span>
+            </a>
+
+            <a class="card" href="explore.html">
+                <span class="eyebrow-accent">02 • MOON MISSIONS</span>
+                <h3 style="margin: 8px 0;">Apollo Landings &amp; Giant Craters</h3>
+                <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
+                    Explore all 6 Apollo crewed landing sites, robotic probes, ancient lava plains, and nearby deep-space asteroids.
+                </p>
+                <span class="btn btn-ghost btn-sm">Explore Moon Sites &rarr;</span>
+            </a>
+
+            <a class="card" href="results.html">
+                <span class="eyebrow-accent">03 • WORLD MAP</span>
+                <h3 style="margin: 8px 0;">Global Testing Stations Map</h3>
+                <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
+                    Interactive world map highlighting testing stations in Hawaii, Chile, Canary Islands, Svalbard, and Antarctica.
+                </p>
+                <span class="btn btn-ghost btn-sm">Open World Map &rarr;</span>
+            </a>
+
+            <a class="card" href="location.html">
+                <span class="eyebrow-accent">04 • FIELD EVALUATION</span>
+                <h3 style="margin: 8px 0;">Rover &amp; Spacesuit Testing Sites</h3>
+                <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
+                    Take a deep-dive look into how scientists test robot wheels, suit mobility, and lunar oxygen extraction in the desert.
+                </p>
+                <span class="btn btn-ghost btn-sm">Inspect Site Details &rarr;</span>
+            </a>
+
+            <a class="card" href="methodology.html">
+                <span class="eyebrow-accent">05 • FUN PHYSICS</span>
+                <h3 style="margin: 8px 0;">Live Gravity &amp; Weight Calculator</h3>
+                <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
+                    Adjust planet size and mass to instantly see how much you would weigh and how high you could jump on other worlds.
+                </p>
+                <span class="btn btn-ghost btn-sm">Try Physics Engine &rarr;</span>
+            </a>
+
+            <a class="card" href="about.html">
+                <span class="eyebrow-accent">06 • VERIFIED SOURCES</span>
+                <h3 style="margin: 8px 0;">NASA &amp; USGS Science Archives</h3>
+                <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
+                    All coordinates, elevation numbers, and temperatures come directly from official NASA and European Space Agency datasets.
+                </p>
+                <span class="btn btn-ghost btn-sm">View Scientific Sources &rarr;</span>
+            </a>
+        </div>
+
+        <!-- Featured Analog Highlight Strip -->
+        <section class="card" style="margin-top: 32px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center;">
+            <div>
+                <span class="eyebrow-accent">🌟 FEATURED LOOKALIKE SPOTLIGHT</span>
+                <h2 style="font-size: 24px; margin: 6px 0 10px;">Atacama Desert (Chile) &harr; Ocean of Storms (Moon)</h2>
+                <p style="color: var(--text-dim); font-size: 13.5px; line-height: 1.65; margin-bottom: 18px;">
+                    High up at 5,050 meters on the Chajnantor Plateau in Chile, the air has almost zero humidity and intense UV radiation. It is the closest thing on Earth to walking on the massive volcanic plains of the Moon's Ocean of Storms!
+                </p>
+                <button class="btn btn-primary btn-sm" onclick="openDifferentialModal('pair-plains-arid')">
+                    Compare Side-by-Side Details &rarr;
+                </button>
+            </div>
+            <div style="background: var(--card-surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px;">
+                <span class="eyebrow-accent" style="color: var(--accent);">QUICK COMPARISON</span>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px;">
+                    <span style="color: var(--muted);">Elevation Difference</span>
+                    <b style="font-weight: 700;">6,250 meters delta</b>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px;">
+                    <span style="color: var(--muted);">Temperature Swing</span>
+                    <b style="color: var(--amber); font-weight: 700;">204°C wider swing on Moon!</b>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 13px;">
+                    <span style="color: var(--muted);">Surface Gravity</span>
+                    <b style="color: var(--blue); font-weight: 700;">1.00g (Earth) vs 0.165g (Moon)</b>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>Built with verified data from NASA Planetary Data System (PDS), USGS Astrogeology &amp; Apollo Archives.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+</body>
+</html>

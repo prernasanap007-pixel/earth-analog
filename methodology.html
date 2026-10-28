@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Planetary Physics &amp; Live Gravity Calculator — Earth &amp; Moon Atlas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Lookalike Pairs</a>
+            <a href="explore.html">Moon Landmarks</a>
+            <a href="results.html">Stations Map</a>
+            <a href="location.html">Site Details</a>
+            <a href="methodology.html" class="active">Astrophysics</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="compare.html">Compare Places &rarr;</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🌌 PLANETARY SCIENCE &amp; GRAVITY CALCULATOR</span>
+                <h1>Planetary Facts, Physics Laws &amp; Gravity Engine</h1>
+                <p>Discover how gravity, rocket escape speeds, and temperatures are calculated across different worlds — explained simply with an interactive calculator.</p>
+            </div>
+        </div>
+
+        <!-- Friendly Beginner Helper Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>Explore How Gravity Works in Space:</h4>
+                <p>
+                    Gravity depends on two simple things: <b>how much mass a planet has</b>, and <b>how wide it is (radius)</b>. Because the Moon has much less mass than Earth, its gravity is 6 times weaker! Test different planets using the interactive calculator below.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 3: Live Interactive Physics Calculator (Featured at Top for fun!) -->
+        <section class="calc-panel" style="margin-top: 0; margin-bottom: 36px;">
+            <span class="eyebrow-accent">🚀 LIVE INTERACTIVE GRAVITY ENGINE</span>
+            <h2 style="font-size: 22px; margin: 4px 0 8px;">Planetary Gravity &amp; Escape Speed Calculator</h2>
+            <p style="color: var(--text-dim); font-size: 13.5px;">
+                Click any of the preset buttons below (Earth, Moon, Mars) or enter your own numbers to immediately see how strong gravity would be on that world!
+            </p>
+
+            <div style="display: flex; gap: 10px; margin: 18px 0 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="setPreset(5.972, 24, 6371, 'Earth')">🌍 Preset: Earth</button>
+                <button class="btn btn-ghost btn-sm" onclick="setPreset(7.342, 22, 1737.4, 'The Moon')">🌕 Preset: The Moon</button>
+                <button class="btn btn-ghost btn-sm" onclick="setPreset(6.417, 23, 3389.5, 'Mars')">🪐 Preset: Mars</button>
+            </div>
+
+            <div class="calc-grid">
+                <div class="calc-input-group">
+                    <label>PLANET MASS NUMBER (M):</label>
+                    <input type="number" id="calc-mass" step="0.01" value="5.972" oninput="runLivePhysics()">
+                    <span style="font-size: 11px; color: var(--muted); margin-top: 4px; display: block;">Earth = 5.972, Moon = 7.342</span>
+                </div>
+
+                <div class="calc-input-group">
+                    <label>MASS MULTIPLIER (10^N KG):</label>
+                    <input type="number" id="calc-exp" step="1" value="24" oninput="runLivePhysics()">
+                    <span style="font-size: 11px; color: var(--muted); margin-top: 4px; display: block;">Earth = 24 (trillions of kg), Moon = 22</span>
+                </div>
+
+                <div class="calc-input-group">
+                    <label>PLANET RADIUS / SIZE (KM):</label>
+                    <input type="number" id="calc-radius" step="1" value="6371" oninput="runLivePhysics()">
+                    <span style="font-size: 11px; color: var(--muted); margin-top: 4px; display: block;">Earth = 6371 km, Moon = 1737 km</span>
+                </div>
+            </div>
+
+            <div class="calc-output-grid">
+                <div class="calc-output-cell">
+                    <span>Computed Surface Gravity</span>
+                    <b id="res-gravity">9.81 m/s²</b>
+                    <small id="res-gravity-ratio" style="color: var(--text-dim); font-size: 12px; margin-top: 4px; display: block;">1.000 g (Normal Earth gravity)</small>
+                    <div id="res-gravity-note" style="margin-top: 6px; font-size: 12px; color: var(--accent);">🏃 Normal weight: a 70 kg person feels like 70 kg.</div>
+                </div>
+
+                <div class="calc-output-cell">
+                    <span>Speed Needed to Reach Space (Escape Velocity)</span>
+                    <b id="res-escape" style="color: var(--blue);">11.19 km/s</b>
+                    <small id="res-escape-kmh" style="color: var(--text-dim); font-size: 12px; margin-top: 4px; display: block;">40,284 km/h</small>
+                    <div id="res-escape-note" style="margin-top: 6px; font-size: 12px; color: var(--amber);">🚀 High speed needed because Earth is heavy.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Invariants Comparison Table -->
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">01 • PLANETARY FACTS AT A GLANCE</span>
+                <h2>Earth vs Moon Key Measurements Table</h2>
+                <p>Verified physical measurements from NASA Apollo, Lunar Reconnaissance Orbiter (LRO), and terrestrial observatories.</p>
+            </div>
+        </div>
+
+        <table class="invariants-table">
+            <thead>
+                <tr>
+                    <th>Physical Measurement</th>
+                    <th>Earth Baseline</th>
+                    <th>Moon Value</th>
+                    <th>Plain-English Comparison</th>
+                </tr>
+            </thead>
+            <tbody id="invariants-tbody">
+                <!-- Populated by JS -->
+            </tbody>
+        </table>
+
+        <!-- Section 2: Governing Astrophysics Formulas -->
+        <div class="page-heading" style="margin-top: 36px;">
+            <div>
+                <span class="eyebrow-accent">02 • ASTROPHYSICAL LAWS MADE SIMPLE</span>
+                <h2>The Laws of Space Physics Explained</h2>
+                <p>Here are the mathematical formulas astrophysicists use, paired with plain-English explanations of how they work.</p>
+            </div>
+        </div>
+
+        <div class="grid-two" id="formulas-container">
+            <!-- Populated by JS -->
+        </div>
+
+        <!-- Section 4: Data Repositories & Open Science -->
+        <div class="page-heading" style="margin-top: 40px;">
+            <div>
+                <span class="eyebrow-accent">03 • VERIFIED DATA SOURCES</span>
+                <h2>Official Space Mission Data Repositories</h2>
+                <p>All planetary numbers and images cited throughout this site originate from open space archives.</p>
+            </div>
+        </div>
+
+        <div class="grid-three">
+            <div class="card">
+                <span class="eyebrow-accent" style="color: var(--accent);">NASA PDS • LOLA ALTIMETRY</span>
+                <h4 style="margin: 6px 0 8px;">Lunar Orbiter Laser Altimeter</h4>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+                    Laser pulses fired from orbit to measure exact mountain peaks, crater depths, and polar slopes down to meter-scale precision.
+                </p>
+            </div>
+            <div class="card">
+                <span class="eyebrow-accent" style="color: var(--blue);">NASA / ASU • LROC CAMERAS</span>
+                <h4 style="margin: 6px 0 8px;">High-Definition Moon Cameras</h4>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+                    Ultra-sharp telescopic cameras that photograph Apollo landing hardware, rover wheel tracks, and deep shadowed lunar pits.
+                </p>
+            </div>
+            <div class="card">
+                <span class="eyebrow-accent" style="color: var(--amber);">NASA / UCLA • DIVINER SENSOR</span>
+                <h4 style="margin: 6px 0 8px;">Infrared Temperature Mapping</h4>
+                <p style="font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+                    Thermal camera measuring surface temperatures from boiling noon heat (+122°C) down to freezing polar crater nights (-246°C).
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+    <script>
+        function runLivePhysics() {
+            const mCoeff = parseFloat(document.getElementById('calc-mass').value) || 0;
+            const exp = parseFloat(document.getElementById('calc-exp').value) || 0;
+            const radiusKm = parseFloat(document.getElementById('calc-radius').value) || 0;
+
+            const G = 6.67430e-11;
+            const massKg = mCoeff * Math.pow(10, exp);
+            const radiusM = radiusKm * 1000;
+
+            if (radiusM <= 0 || massKg <= 0) {
+                document.getElementById('res-gravity').textContent = '0.00 m/s²';
+                document.getElementById('res-escape').textContent = '0.00 km/s';
+                return;
+            }
+
+            const g = (G * massKg) / (radiusM * radiusM);
+            const ve = Math.sqrt((2 * G * massKg) / radiusM) / 1000;
+            const gRatio = (g / 9.807).toFixed(3);
+            const veKmh = Math.round(ve * 3600);
+            const feltWeight70 = (70 * (g / 9.807)).toFixed(1);
+
+            document.getElementById('res-gravity').textContent = `${g.toFixed(2)} m/s²`;
+            document.getElementById('res-gravity-ratio').textContent = `${gRatio}× Earth gravity`;
+            document.getElementById('res-gravity-note').textContent = `🏃 A 70 kg person would feel like ${feltWeight70} kg here!`;
+
+            document.getElementById('res-escape').textContent = `${ve.toFixed(2)} km/s`;
+            document.getElementById('res-escape-kmh').textContent = `${veKmh.toLocaleString()} km/h`;
+            document.getElementById('res-escape-note').textContent = `🚀 Rockets need to reach ${ve.toFixed(1)} km/s to leave this world into space.`;
+        }
+
+        function setPreset(m, exp, r, name) {
+            document.getElementById('calc-mass').value = m;
+            document.getElementById('calc-exp').value = exp;
+            document.getElementById('calc-radius').value = r;
+            runLivePhysics();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render invariants table
+            const tbody = document.getElementById('invariants-tbody');
+            tbody.innerHTML = ASTROPHYSICS_INVARIANTS.map(inv => `
+                <tr>
+                    <td><b>${inv.parameter}</b></td>
+                    <td style="color: var(--blue); font-weight: 700;">${inv.earth}</td>
+                    <td style="color: var(--amber); font-weight: 700;">${inv.moon}</td>
+                    <td style="color: var(--text-dim);">${inv.contrast}</td>
+                </tr>
+            `).join('');
+
+            // Render formulas
+            const fContainer = document.getElementById('formulas-container');
+            fContainer.innerHTML = ASTROPHYSICS_FORMULAS.map(f => `
+                <div class="formula-card">
+                    <h3 class="formula-title">${f.title}</h3>
+                    <div class="formula-display">${f.formula}</div>
+                    <p class="formula-desc">${f.explanation}</p>
+                </div>
+            `).join('');
+
+            runLivePhysics();
+        });
+    </script>
+</body>
+</html>

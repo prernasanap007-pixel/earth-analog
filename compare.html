@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>7 Earth &amp; Moon Lookalike Pairs — Earth &amp; Moon Atlas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html" class="active">Lookalike Pairs</a>
+            <a href="explore.html">Moon Landmarks</a>
+            <a href="results.html">Stations Map</a>
+            <a href="location.html">Site Details</a>
+            <a href="methodology.html">Astrophysics</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <button class="btn btn-ghost btn-sm" id="temp-unit-toggle" onclick="toggleTempUnit()">
+                Unit: °C
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🔍 SIDE-BY-SIDE ANALOGS • EARTH &amp; MOON LOOKALIKES</span>
+                <h1>Earth Stations Matched with the Moon</h1>
+                <p>Explore 7 verified places on Earth that look, feel, or behave like regions on the Moon. Compare elevations, temperature swings, and test our live gravity simulator.</p>
+            </div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--accent);" id="counter-label">
+                SHOWING 7 OF 7 PAIRS
+            </div>
+        </div>
+
+        <!-- Friendly Beginner Helper Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>How to Read These Comparison Cards:</h4>
+                <p>
+                    Each card pairs an <b>Earth field station</b> (left) with its closest <b>Moon counterpart</b> (right). The center column displays the key differences in height and temperature swing. Click <b>"Interactive Gravity &amp; Jump Simulator"</b> on any card to see how much lighter you would be on the Moon!
+                </p>
+            </div>
+        </div>
+
+        <!-- Filter & Search Controls Bar -->
+        <section class="filter-bar">
+            <div class="pill-group" id="category-pills">
+                <button class="pill-btn active" data-cat="all" onclick="setCategory('all')">All 7 Pairs</button>
+                <button class="pill-btn" data-cat="extreme-terrains" onclick="setCategory('extreme-terrains')">🏔️ Mountain Peaks</button>
+                <button class="pill-btn" data-cat="deep-basins" onclick="setCategory('deep-basins')">🌊 Deep Basins</button>
+                <button class="pill-btn" data-cat="research-bases" onclick="setCategory('research-bases')">❄️ Polar Ice Bases</button>
+                <button class="pill-btn" data-cat="volcanic-subterranean" onclick="setCategory('volcanic-subterranean')">🌋 Lava Caves</button>
+                <button class="pill-btn" data-cat="historic-sites" onclick="setCategory('historic-sites')">🚀 Historic Sites</button>
+            </div>
+
+            <div class="filter-controls">
+                <div class="search-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Search by name, region, country..." oninput="handleSearch()">
+                </div>
+
+                <select class="select-box" id="sort-select" onchange="handleSort()">
+                    <option value="default">Default Order</option>
+                    <option value="elevation">Height Difference (Delta)</option>
+                    <option value="temp-swing">Temperature Swing</option>
+                    <option value="latitude">Latitude (North to South)</option>
+                    <option value="name">Alphabetical Title</option>
+                </select>
+
+                <button class="btn btn-ghost btn-sm" id="sort-dir-btn" onclick="toggleSortDir()" title="Reverse sort direction">
+                    &uarr;&darr; Sort
+                </button>
+            </div>
+        </section>
+
+        <!-- Analog Pairs Container -->
+        <div id="pairs-container">
+            <!-- Dynamically populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+    <script>
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let sortCriterion = 'default';
+        let sortAscending = false;
+        let tempUnit = 'C';
+
+        function toggleTempUnit() {
+            tempUnit = (tempUnit === 'C') ? 'F' : 'C';
+            document.getElementById('temp-unit-toggle').textContent = `Unit: °${tempUnit}`;
+            renderPairs();
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('#category-pills button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.cat === cat);
+            });
+            renderPairs();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+            renderPairs();
+        }
+
+        function handleSort() {
+            sortCriterion = document.getElementById('sort-select').value;
+            renderPairs();
+        }
+
+        function toggleSortDir() {
+            sortAscending = !sortAscending;
+            renderPairs();
+        }
+
+        function toggleSim(simId) {
+            const el = document.getElementById(simId);
+            if (el) el.classList.toggle('open');
+        }
+
+        function updateSim(pairId, inputEl) {
+            const weight = parseFloat(inputEl.value) || 70;
+            const earthFelt = (weight * 1.0).toFixed(1);
+            const moonFelt = (weight * (1.622 / 9.807)).toFixed(1);
+            const earthJump = 45; // cm
+            const moonJump = Math.round(45 * (9.807 / 1.622)); // ~272 cm
+
+            const container = document.getElementById(`sim-${pairId}`);
+            if (container) {
+                container.querySelector('.sim-earth-felt').textContent = `${earthFelt} kg`;
+                container.querySelector('.sim-moon-felt').textContent = `${moonFelt} kg (6× lighter!)`;
+                container.querySelector('.sim-earth-jump').textContent = `${earthJump} cm`;
+                container.querySelector('.sim-moon-jump').textContent = `${moonJump} cm (2.7 meters / 9 ft!)`;
+            }
+        }
+
+        function renderPairs() {
+            const container = document.getElementById('pairs-container');
+            let list = [...ANALOG_PAIRS];
+
+            // 1. Filter by Category
+            if (currentCategory !== 'all') {
+                list = list.filter(p => p.category === currentCategory);
+            }
+
+            // 2. Filter by Search Query
+            if (searchQuery) {
+                list = list.filter(p => 
+                    p.title.toLowerCase().includes(searchQuery) ||
+                    p.earth.name.toLowerCase().includes(searchQuery) ||
+                    p.moon.name.toLowerCase().includes(searchQuery) ||
+                    p.earth.region.toLowerCase().includes(searchQuery) ||
+                    p.moon.region.toLowerCase().includes(searchQuery)
+                );
+            }
+
+            // 3. Sort
+            if (sortCriterion === 'elevation') {
+                list.sort((a, b) => {
+                    const deltaA = Math.abs(a.earth.metrics.elevationMeters - a.moon.metrics.elevationMeters);
+                    const deltaB = Math.abs(b.earth.metrics.elevationMeters - b.moon.metrics.elevationMeters);
+                    return sortAscending ? deltaA - deltaB : deltaB - deltaA;
+                });
+            } else if (sortCriterion === 'temp-swing') {
+                list.sort((a, b) => {
+                    const swingA = Math.abs(a.moon.metrics.tempMaxCelsius - a.moon.metrics.tempMinCelsius);
+                    const swingB = Math.abs(b.moon.metrics.tempMaxCelsius - b.moon.metrics.tempMinCelsius);
+                    return sortAscending ? swingA - swingB : swingB - swingA;
+                });
+            } else if (sortCriterion === 'latitude') {
+                list.sort((a, b) => {
+                    const latA = Math.abs(a.earth.latitude);
+                    const latB = Math.abs(b.earth.latitude);
+                    return sortAscending ? latA - latB : latB - latA;
+                });
+            } else if (sortCriterion === 'name') {
+                list.sort((a, b) => sortAscending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title));
+            }
+
+            document.getElementById('counter-label').textContent = `SHOWING ${list.length} OF ${ANALOG_PAIRS.length} PAIRS`;
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="card" style="text-align: center; padding: 60px 20px;">
+                        <h3 style="color: var(--accent); margin-bottom: 8px;">No Lookalike Pairs Found</h3>
+                        <p style="color: var(--muted); margin-bottom: 16px;">Try adjusting your search words or category filter.</p>
+                        <button class="btn btn-ghost btn-sm" onclick="setCategory('all'); document.getElementById('search-input').value=''; handleSearch();">
+                            Reset All Filters
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = list.map((p, idx) => {
+                const elevDelta = Math.abs(p.earth.metrics.elevationMeters - p.moon.metrics.elevationMeters);
+                const earthSwing = Math.abs(p.earth.metrics.tempMaxCelsius - p.earth.metrics.tempMinCelsius);
+                const moonSwing = Math.abs(p.moon.metrics.tempMaxCelsius - p.moon.metrics.tempMinCelsius);
+                const thermalVariance = Math.abs(earthSwing - moonSwing);
+
+                return `
+                    <article class="pair-card" id="${p.id}">
+                        <div class="pair-header">
+                            <div class="pair-header-left">
+                                <span class="pair-number">#${String(idx + 1).padStart(2, '0')}</span>
+                                <h2 class="pair-title">${p.title}</h2>
+                                <span class="pair-category-pill">${p.categoryLabel}</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="openDifferentialModal('${p.id}')">
+                                Compare Full Details &rarr;
+                            </button>
+                        </div>
+
+                        <div class="pair-comparison-row">
+                            <!-- Earth Station Box -->
+                            <div class="location-box">
+                                <div class="location-img-wrap">
+                                    <img src="${p.earth.imageUrl}" alt="${p.earth.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=80'">
+                                    <div class="location-badge-top">
+                                        <span class="dot-earth"></span>
+                                        <span>🌍 EARTH STATION</span>
+                                    </div>
+                                    <div class="location-coords-bottom">${p.earth.coordinatesFormatted}</div>
+                                </div>
+                                <div class="location-info-body">
+                                    <span class="location-region">📍 ${p.earth.region}</span>
+                                    <h3 class="location-name">${p.earth.name}</h3>
+                                    <p class="location-desc">${p.earth.summary}</p>
+
+                                    <div class="location-metrics-grid">
+                                        <div class="loc-metric">
+                                            <span>🏔️ Elevation / Depth</span>
+                                            <b>${p.earth.metrics.elevationMeters > 0 ? '+' : ''}${p.earth.metrics.elevationMeters.toLocaleString()} m</b>
+                                        </div>
+                                        <div class="loc-metric">
+                                            <span>🌡️ Temperature Range</span>
+                                            <b>${formatTemp(p.earth.metrics.tempMinCelsius, tempUnit)} to ${formatTemp(p.earth.metrics.tempMaxCelsius, tempUnit)}</b>
+                                        </div>
+                                        <div class="loc-metric">
+                                            <span>⚖️ Surface Gravity</span>
+                                            <b>${p.earth.metrics.gravityMps2.toFixed(2)} m/s² (1.00g Normal)</b>
+                                        </div>
+                                        <div class="loc-metric">
+                                            <span>💨 Atmosphere</span>
+                                            <b>${p.earth.metrics.atmosphereKpa.toLocaleString()} kPa (Full Air)</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Delta Mid Column -->
+                            <div class="delta-col">
+                                <div class="delta-item">
+                                    <span>🏔️ Height Delta</span>
+                                    <b>Δ ${elevDelta.toLocaleString()} m</b>
+                                </div>
+                                <div class="delta-divider"></div>
+                                <div class="delta-item">
+                                    <span>🌡️ Temperature Swing</span>
+                                    <b class="text-accent">Δ ${thermalVariance.toFixed(0)}°C SWING</b>
+                                </div>
+                                <div class="delta-divider"></div>
+                                <button class="btn btn-ghost btn-sm" onclick="openDifferentialModal('${p.id}')">
+                                    🔍 Compare
+                                </button>
+                            </div>
+
+                            <!-- Moon Station Box -->
+                            <div class="location-box">
+                                <div class="location-img-wrap">
+                                    <img src="${p.moon.imageUrl}" alt="${p.moon.name}" loading="lazy" onerror="this.src='assets/images/lunarorb_copernicus_000b6074.jpg'">
+                                    <div class="location-badge-top">
+                                        <span class="dot-moon"></span>
+                                        <span>🌕 MOON ANALOG</span>
+                                    </div>
+                                    <div class="location-coords-bottom">${p.moon.coordinatesFormatted}</div>
+                                </div>
+                                <div class="location-info-body">
+                                    <span class="location-region">📍 ${p.moon.region}</span>
+                                    <h3 class="location-name">${p.moon.name}</h3>
+                                    <p class="location-desc">${p.moon.summary}</p>
+
+                                    <div class="location-metrics-grid">
+                                        <div class="loc-metric">
+                                            <span>🏔️ Lunar Elevation</span>
+                                            <b>${p.moon.metrics.elevationMeters > 0 ? '+' : ''}${p.moon.metrics.elevationMeters.toLocaleString()} m</b>
+                                        </div>
+                                        <div class="loc-metric">
+                                            <span>🌡️ Temperature Range</span>
+                                            <b style="color: var(--amber);">${formatTemp(p.moon.metrics.tempMinCelsius, tempUnit)} to ${formatTemp(p.moon.metrics.tempMaxCelsius, tempUnit)}</b>
+                                        </div>
+                                        <div class="loc-metric">
+                                            <span>⚖️ Surface Gravity</span>
+                                            <b>${p.moon.metrics.gravityMps2.toFixed(2)} m/s² (1/6th Gravity)</b>
+                                        </div>
+                                        <div class="loc-metric">
+                                            <span>📡 Radio Signal Lag</span>
+                                            <b>${p.moon.metrics.commDelaySeconds}s travel time</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Surface Gravity & Jump Simulator Strip -->
+                        <div class="simulator-strip">
+                            <button class="sim-toggle-btn" onclick="toggleSim('sim-${p.id}')">
+                                <span>🚀 <b>Interactive Gravity &amp; Jump Simulator</b> — Test how light you'd feel here!</span>
+                                <span style="color: var(--accent); font-weight: 700;">Open Simulator &darr;</span>
+                            </button>
+                            <div class="sim-box" id="sim-${p.id}">
+                                <div class="sim-input-row">
+                                    <label>🏃 Enter Your Body Weight (in kg):</label>
+                                    <input type="number" min="20" max="300" value="70" oninput="updateSim('${p.id}', this)" title="Enter weight in kg">
+                                </div>
+                                <div class="sim-results">
+                                    <div class="sim-res-cell">
+                                        <span>🌍 Your Earth Weight</span>
+                                        <b class="sim-earth-felt">70.0 kg</b>
+                                    </div>
+                                    <div class="sim-res-cell">
+                                        <span>🌕 Your Moon Weight (1/6th)</span>
+                                        <b class="sim-moon-felt" style="color: var(--amber);">11.6 kg (6× lighter!)</b>
+                                    </div>
+                                    <div class="sim-res-cell">
+                                        <span>🌍 Your Earth Vertical Jump</span>
+                                        <b class="sim-earth-jump">45 cm (1.5 ft)</b>
+                                    </div>
+                                    <div class="sim-res-cell">
+                                        <span>🌕 Your Moon Vertical Jump</span>
+                                        <b class="sim-moon-jump" style="color: var(--green);">272 cm (2.7 meters / 9 ft!)</b>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); text-align: center;">
+                                    💡 <i>Fun Fact: In lunar gravity, an average person can easily jump over a car or touch a basketball rim with zero effort!</i>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPairs();
+        });
+    </script>
+</body>
+</html>

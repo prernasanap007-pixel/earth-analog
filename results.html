@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Testing Stations Map — Earth &amp; Moon Atlas</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .map-interactive-container {
+            position: relative;
+            background: var(--card-surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.3);
+        }
+        .map-svg-layer {
+            width: 100%;
+            height: 100%;
+            opacity: 0.95;
+        }
+        .station-pin {
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .station-pin:hover {
+            transform: scale(1.35);
+        }
+        .rank-matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .rank-matrix-table th {
+            background: var(--card-surface);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            border-bottom: 1px solid var(--line);
+            text-transform: uppercase;
+        }
+        .rank-matrix-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--line);
+        }
+        .rank-matrix-table tr:hover td {
+            background: var(--card-hover);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-symbol">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M3.6 9h16.8"/>
+                    <path d="M3.6 15h16.8"/>
+                    <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+                    <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <b>EARTH &amp; MOON ATLAS</b>
+                <small>ORBITAL EDITORIAL</small>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="compare.html">Lookalike Pairs</a>
+            <a href="explore.html">Moon Landmarks</a>
+            <a href="results.html" class="active">Stations Map</a>
+            <a href="location.html">Site Details</a>
+            <a href="methodology.html">Astrophysics</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="topbar-actions">
+            <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
+                <span>🎨</span> <span>Theme</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="compare.html">Compare Places &rarr;</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow-accent">🗺️ WORLDWIDE TESTING STATIONS • INTERACTIVE MAP</span>
+                <h1>Global Analog Stations &amp; Lunar Equivalents</h1>
+                <p>Click any station marker on the world map below to view why space agencies test lunar rovers and spacesuits there.</p>
+            </div>
+            <a href="compare.html" class="btn btn-ghost btn-sm">Explore All 7 Pairs &rarr;</a>
+        </div>
+
+        <!-- Friendly Beginner Helper Banner -->
+        <div class="beginner-guide-banner">
+            <div class="beginner-guide-icon">💡</div>
+            <div>
+                <h4>Interactive World Station Radar:</h4>
+                <p>
+                    From Hawaii's volcanic summit to the ultra-dry Atacama desert in Chile and frozen Svalbard in the Arctic, each pin represents a real terrestrial field station that scientists use to prepare for lunar exploration! Click any pin to open its side-by-side comparison.
+                </p>
+            </div>
+        </div>
+
+        <!-- Interactive Global Station Map Representation -->
+        <section class="card" style="margin-bottom: 28px; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span class="eyebrow-accent">📍 WORLD RADAR • 7 VERIFIED RESEARCH SITES</span>
+                <span style="font-weight: 700; font-size: 12.5px; color: var(--accent);">👉 Click any colored station pin to inspect!</span>
+            </div>
+            
+            <div class="map-interactive-container">
+                <!-- SVG World Map Graphic with Station Markers -->
+                <svg class="map-svg-layer" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+                    <!-- Subtle Latitude / Longitude Grid lines -->
+                    <defs>
+                        <pattern id="grid" width="100" height="50" patternUnits="userSpaceOnUse">
+                            <path d="M 100 0 L 0 0 0 50" fill="none" stroke="rgba(148,163,184,0.08)" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="1000" height="500" fill="url(#grid)" />
+                    
+                    <!-- Equator and Prime Meridian -->
+                    <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(129,140,248,0.25)" stroke-width="1.2" stroke-dasharray="4,4"/>
+                    <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(129,140,248,0.25)" stroke-width="1.2" stroke-dasharray="4,4"/>
+
+                    <!-- World Land Contours Simplified Representation -->
+                    <!-- North America -->
+                    <path d="M 140 100 Q 220 70 290 120 T 260 210 T 200 240 T 150 180 Z" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.35)" stroke-width="1.2"/>
+                    <!-- South America -->
+                    <path d="M 270 260 Q 340 280 330 360 T 280 440 T 260 330 Z" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.35)" stroke-width="1.2"/>
+                    <!-- Eurasia -->
+                    <path d="M 480 80 Q 650 60 840 100 T 890 220 T 700 220 T 520 160 Z" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.35)" stroke-width="1.2"/>
+                    <!-- Africa -->
+                    <path d="M 470 190 Q 580 200 570 300 T 530 380 T 460 270 Z" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.35)" stroke-width="1.2"/>
+                    <!-- Australia -->
+                    <path d="M 780 320 Q 860 310 880 370 T 800 400 Z" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.35)" stroke-width="1.2"/>
+                    <!-- Antarctica -->
+                    <path d="M 100 470 Q 500 450 900 470 L 900 500 L 100 500 Z" fill="rgba(56,189,248,0.14)" stroke="rgba(56,189,248,0.35)" stroke-width="1.2"/>
+
+                    <!-- Station Pins with Click Events -->
+                    <!-- 1. Mauna Kea -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-observatories-peaks')">
+                        <circle cx="180" cy="195" r="10" fill="rgba(56,189,248,0.3)"/>
+                        <circle cx="180" cy="195" r="5.5" fill="#38bdf8"/>
+                        <text x="180" y="180" fill="var(--text)" font-weight="700" font-size="11" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">🏔️ Mauna Kea</text>
+                    </g>
+
+                    <!-- 2. Mariana Trench -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-depressions-trenches')">
+                        <circle cx="840" cy="218" r="10" fill="rgba(56,189,248,0.3)"/>
+                        <circle cx="840" cy="218" r="5.5" fill="#38bdf8"/>
+                        <text x="840" y="205" fill="var(--text)" font-weight="700" font-size="11" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">🌊 Challenger Deep</text>
+                    </g>
+
+                    <!-- 3. McMurdo Antarctica -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-polar-cryo')">
+                        <circle cx="860" cy="460" r="10" fill="rgba(56,189,248,0.3)"/>
+                        <circle cx="860" cy="460" r="5.5" fill="#38bdf8"/>
+                        <text x="860" y="445" fill="var(--text)" font-weight="700" font-size="11" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">❄️ McMurdo (Antarctica)</text>
+                    </g>
+
+                    <!-- 4. Atacama Desert -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-plains-arid')">
+                        <circle cx="310" cy="315" r="12" fill="rgba(245,158,11,0.35)"/>
+                        <circle cx="310" cy="315" r="6.5" fill="#f59e0b"/>
+                        <text x="310" y="298" fill="#fbbf24" font-weight="800" font-size="12" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">☀️ Atacama Desert (ALMA)</text>
+                    </g>
+
+                    <!-- 5. Lanzarote Canary Islands -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-subterranean-tubes')">
+                        <circle cx="460" cy="170" r="10" fill="rgba(56,189,248,0.3)"/>
+                        <circle cx="460" cy="170" r="5.5" fill="#38bdf8"/>
+                        <text x="460" y="155" fill="var(--text)" font-weight="700" font-size="11" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">🌋 Lanzarote Lava Tubes</text>
+                    </g>
+
+                    <!-- 6. Kennedy Space Center -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-historic-departure')">
+                        <circle cx="275" cy="170" r="10" fill="rgba(56,189,248,0.3)"/>
+                        <circle cx="275" cy="170" r="5.5" fill="#38bdf8"/>
+                        <text x="275" y="155" fill="var(--text)" font-weight="700" font-size="11" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">🚀 NASA Kennedy (LC-39A)</text>
+                    </g>
+
+                    <!-- 7. Svalbard Seed Vault -->
+                    <g class="station-pin" onclick="openDifferentialModal('pair-sanctuaries-vaults')">
+                        <circle cx="530" cy="50" r="10" fill="rgba(56,189,248,0.3)"/>
+                        <circle cx="530" cy="50" r="5.5" fill="#38bdf8"/>
+                        <text x="530" y="38" fill="var(--text)" font-weight="700" font-size="11" font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">🌱 Svalbard Global Vault</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Comparative Stations Matrix Table -->
+        <section class="card" style="padding: 0; overflow: hidden;">
+            <div style="padding: 18px 24px; border-bottom: 1px solid var(--line); background: var(--card-surface); display: flex; justify-content: space-between; align-items: center;">
+                <span class="eyebrow-accent">📋 COMPLETE LOOKALIKE PAIRING TABLE</span>
+                <span style="font-weight: 700; font-size: 12px; color: var(--accent);">7 VERIFIED NASA ANALOG SITES</span>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table class="rank-matrix-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Earth Field Station</th>
+                            <th>Earth Coordinates</th>
+                            <th>Matching Lunar Site</th>
+                            <th>Moon Coordinates</th>
+                            <th>Height Delta</th>
+                            <th>Thermal Swing</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-tbody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
+                <a href="https://astrogeology.usgs.gov" target="_blank" rel="noopener">USGS Astrogeology</a>
+                <a href="https://www.lroc.asu.edu" target="_blank" rel="noopener">LROC Camera</a>
+                <a href="about.html">Citations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tbody = document.getElementById('matrix-tbody');
+            tbody.innerHTML = ANALOG_PAIRS.map((p, idx) => {
+                const elevDelta = Math.abs(p.earth.metrics.elevationMeters - p.moon.metrics.elevationMeters);
+                const earthSwing = Math.abs(p.earth.metrics.tempMaxCelsius - p.earth.metrics.tempMinCelsius);
+                const moonSwing = Math.abs(p.moon.metrics.tempMaxCelsius - p.moon.metrics.tempMinCelsius);
+                const thermalVariance = Math.abs(earthSwing - moonSwing);
+
+                return `
+                    <tr>
+                        <td style="color: var(--accent); font-weight: 800;">${String(idx + 1).padStart(2, '0')}</td>
+                        <td>
+                            <b>${p.earth.name}</b>
+                            <div style="font-size: 11.5px; color: var(--muted);">📍 ${p.earth.region}</div>
+                        </td>
+                        <td style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">${p.earth.coordinatesFormatted}</td>
+                        <td>
+                            <b style="color: var(--amber);">${p.moon.name}</b>
+                            <div style="font-size: 11.5px; color: var(--muted);">📍 ${p.moon.region}</div>
+                        </td>
+                        <td style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">${p.moon.coordinatesFormatted}</td>
+                        <td style="font-weight: 700;">Δ ${elevDelta.toLocaleString()} m</td>
+                        <td style="color: var(--accent); font-weight: 700;">Δ ${thermalVariance.toFixed(0)}°C swing</td>
+                        <td>
+                            <button class="btn btn-ghost btn-sm" onclick="openDifferentialModal('${p.id}')">
+                                Inspect &rarr;
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+</html>
