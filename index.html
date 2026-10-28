@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Earth &amp; Moon Atlas — Orbital Editorial &amp; Comparative Telemetry</title>
+    <title>Analog Atlas — Earth &amp; Moon Terrestrial Analogs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,8 +20,8 @@
                 </svg>
             </div>
             <div class="brand-text">
-                <b>EARTH &amp; MOON ATLAS</b>
-                <small>ORBITAL EDITORIAL</small>
+                <b>ANALOG ATLAS</b>
+                <small>EARTH &amp; MOON TELEMETRY</small>
             </div>
         </a>
         <nav>
@@ -34,9 +34,6 @@
             <a href="about.html">About</a>
         </nav>
         <div class="topbar-actions">
-            <button class="btn btn-ghost btn-sm btn-video-topbar" onclick="scrollToVideo(true)" title="Watch 60-Second Video Tour">
-                <span style="color: var(--amber);">▶</span> <span>Intro Video</span>
-            </button>
             <button class="theme-toggle-btn" onclick="cycleTheme()" title="Switch Theme">
                 <span>🎨</span> <span>Theme</span>
             </button>
@@ -45,321 +42,67 @@
     </header>
 
     <main>
-        <!-- Hero Section (Preserving Earth Image on Homepage as explicitly requested) -->
+        <!-- Cinematic Universe Hero (Spanning out Earth & Moon with Project Name) -->
         <section class="hero-panel">
-            <div class="hero-bg"></div>
+            <div class="hero-video-stage">
+                <video class="hero-video-element" autoplay muted loop playsinline preload="auto">
+                    <source src="v3.mp4" type="video/mp4">
+        
+                </video>
+                <div class="hero-cosmos-vignette"></div>
+            </div>
+
             <div class="hero-content">
-                <div class="hero-badge">
-                    <span>🌍 EXPLORING TWO WORLDS • EARTH &amp; THE MOON</span>
+                <div class="hero-research-badge">
+                    <span class="badge-dot"></span>
+                    <span>NASA PDS &bull; USGS ASTROGEOLOGY &bull; PLANETARY ANALOG ARCHIVE</span>
                 </div>
-                <h1 class="hero-title">Earth &amp; Moon Comparative Atlas</h1>
-                <p class="hero-subtitle">Discover how places on Earth help us explore the Moon — explained simply with verified NASA science.</p>
+                <h1 class="hero-title">ANALOG ATLAS</h1>
+                <p class="hero-subtitle">Earth &amp; Moon Terrestrial Analogs</p>
                 <p class="hero-desc">
-                    Ever wondered how astronauts train for lunar missions? By finding extreme places on Earth that look and feel just like the Moon. Explore side-by-side terrain matches, jump height simulators, and planetary facts grounded in NASA &amp; USGS orbital data.
+                    Connecting extreme terrestrial geological landscapes to the cratered highlands and basaltic plains of the Moon. Grounded in peer-reviewed orbital telemetry, Apollo surface logs, and USGS Astrogeology research to prepare humanity for deep space exploration.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-video-hero" onclick="playVideoTour(true)">
-                        <span class="video-play-pulse">▶</span>
-                        <span>Watch 60-Sec Intro Video</span>
-                        <span class="video-pill-tag">Interactive</span>
-                    </button>
-                    <a href="compare.html" class="btn btn-primary">Explore 7 Lookalike Pairs &rarr;</a>
-                    <button class="btn btn-ghost" onclick="toggleAudioTour()" id="hero-audio-tour-btn" title="Listen to 30-second audio mission briefing">
-                        <span id="hero-audio-icon">🎧</span>
-                        <span id="hero-audio-text">30s Audio Briefing</span>
-                    </button>
-                    <a href="#quick-explainer" class="btn btn-ghost">What is an Analog? &darr;</a>
+                    <a href="compare.html" class="btn btn-primary">
+                        <span>Explore 7 Analog Pairs &rarr;</span>
+                    </a>
+                    <a href="#orbital-engine" class="btn hero-btn-ghost">
+                        <span>Orbital Mechanics Engine &darr;</span>
+                    </a>
+                    <a href="results.html" class="btn hero-btn-ghost">
+                        <span>Global Stations Radar</span>
+                    </a>
                 </div>
             </div>
+
+            <!-- Invariant Telemetry Metric Bar -->
             <div class="feature-strip">
                 <div class="feature-strip-item">
                     <span>384,400 KM</span>
-                    <small>Average Distance to Moon</small>
+                    <small>Mean Lunar Distance</small>
                 </div>
                 <div class="feature-strip-item">
-                    <span>1/6th GRAVITY</span>
-                    <small>You Weigh 6× Less on Moon</small>
+                    <span>1.00g vs 0.165g</span>
+                    <small>Gravitational Differential</small>
                 </div>
                 <div class="feature-strip-item">
-                    <span>7 ANALOG PAIRS</span>
-                    <small>Earth vs Moon Lookalikes</small>
+                    <span>07 ANALOG PAIRS</span>
+                    <small>Curated Field Environments</small>
                 </div>
                 <div class="feature-strip-item">
-                    <span>6 APOLLO SITES</span>
-                    <small>Historic Moonwalks &amp; Rocks</small>
-                </div>
-                <div class="feature-strip-item">
-                    <span>NASA / USGS</span>
-                    <small>Verified Space Mission Data</small>
+                    <span>NASA / USGS PDS</span>
+                    <small>Peer-Reviewed Telemetry</small>
                 </div>
             </div>
         </section>
 
-        <!-- Introductory Video Tour & Mission Briefing Center -->
-        <section class="intro-video-section" id="intro-video-section">
-            <div class="video-section-header">
-                <div class="video-header-left">
-                    <span class="eyebrow-accent">🎬 60-SECOND INTRODUCTORY BRIEFING</span>
-                    <h2 class="video-section-title">Understand Earth &amp; Moon Analogs in 60 Seconds</h2>
-                    <p class="video-section-subtitle">
-                        Watch our interactive visual tour with synchronized narration, or explore authentic NASA spaceflight footage to see how Earth's extreme environments unlock deep space exploration.
-                    </p>
-                </div>
-                <div class="video-mode-tabs">
-                    <button class="video-tab-btn active" id="tab-interactive" onclick="switchVideoMode('interactive')">
-                        <span>🎙️ Interactive Narrated Tour</span>
-                    </button>
-                    <button class="video-tab-btn" id="tab-nasa" onclick="switchVideoMode('nasa')">
-                        <span>🚀 NASA Space Reel</span>
-                    </button>
-                    <button class="video-tab-btn" id="tab-guide" onclick="switchVideoMode('guide')">
-                        <span>💡 3-Step Quick Guide</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Video Player Frame -->
-            <div class="video-player-container" id="video-player-frame">
-                <!-- 1. Interactive Video Tour Stage -->
-                <div class="video-interactive-stage" id="stage-interactive">
-                    <canvas id="video-canvas" class="video-canvas"></canvas>
-                    <div class="video-cinema-overlay"></div>
-
-                    <!-- HUD Top Bar -->
-                    <div class="video-hud-top">
-                        <div class="hud-badge">
-                            <span class="hud-dot live-blink"></span>
-                            <span id="video-hud-chapter">CH 01 • MISSION BRIEFING</span>
-                        </div>
-                        <div class="hud-telemetry" id="video-hud-telemetry">
-                            <span>LEO &rarr; LLO • DISTANCE: 384,400 KM</span>
-                        </div>
-                        <button class="hud-theater-btn" onclick="toggleTheaterMode()" title="Toggle Theater Mode">
-                            <span id="theater-icon">⛶</span> <span id="theater-text">Theater Mode</span>
-                        </button>
-                    </div>
-
-                    <!-- Dynamic Scene Card Overlay -->
-                    <div class="video-scene-overlay" id="video-scene-overlay">
-                        <!-- Injected by VideoTour -->
-                    </div>
-
-                    <!-- Center Big Play Button (shown when paused) -->
-                    <div class="video-center-play" id="video-center-play" onclick="toggleVideoPlay()">
-                        <div class="play-circle-glow">
-                            <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
-                                <polygon points="6 4 20 12 6 20 6 4"/>
-                            </svg>
-                        </div>
-                        <span>▶ Click to Play 60-Sec Tour</span>
-                    </div>
-
-                    <!-- Closed Captions HUD Bar -->
-                    <div class="video-caption-bar" id="video-caption-bar">
-                        <span class="caption-speaker">MISSION GUIDE:</span>
-                        <span class="caption-text" id="video-caption-text">Welcome to the Earth &amp; Moon Atlas. Discover how extreme places on Earth teach us to survive on the Moon.</span>
-                    </div>
-
-                    <!-- Bottom Controls Bar -->
-                    <div class="video-controls-bar">
-                        <div class="video-timeline-wrapper" onclick="seekVideoTimeline(event)" id="video-timeline" title="Click to seek">
-                            <div class="video-timeline-track">
-                                <div class="video-timeline-progress" id="video-progress"></div>
-                                <div class="chapter-marker" style="left: 0%;" title="01. The Mission"></div>
-                                <div class="chapter-marker" style="left: 20%;" title="02. 1g vs 1/6th Gravity"></div>
-                                <div class="chapter-marker" style="left: 40%;" title="03. 7 Lookalike Pairs"></div>
-                                <div class="chapter-marker" style="left: 60%;" title="04. Apollo Sites"></div>
-                                <div class="chapter-marker" style="left: 80%;" title="05. Simulators"></div>
-                            </div>
-                        </div>
-
-                        <div class="video-controls-row">
-                            <div class="controls-left">
-                                <button class="ctrl-btn" id="video-play-btn" onclick="toggleVideoPlay()" title="Play / Pause (Space)">
-                                    <span id="ctrl-play-icon">▶</span>
-                                </button>
-                                <button class="ctrl-btn" onclick="replayVideo()" title="Replay from start">
-                                    <span>↺</span>
-                                </button>
-                                <div class="video-time-display">
-                                    <span id="video-current-time">0:00</span> / <span>1:00</span>
-                                </div>
-                                <div class="audio-wave-visualizer" id="audio-wave" title="Voice Narration Status">
-                                    <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </div>
-
-                            <div class="controls-center">
-                                <div class="chapter-pill-group">
-                                    <button class="ch-pill active" onclick="jumpToChapter(0)">1. Concept</button>
-                                    <button class="ch-pill" onclick="jumpToChapter(1)">2. Gravity</button>
-                                    <button class="ch-pill" onclick="jumpToChapter(2)">3. Lookalikes</button>
-                                    <button class="ch-pill" onclick="jumpToChapter(3)">4. Apollo</button>
-                                    <button class="ch-pill" onclick="jumpToChapter(4)">5. Simulators</button>
-                                </div>
-                            </div>
-
-                            <div class="controls-right">
-                                <button class="ctrl-btn" id="voice-toggle-btn" onclick="toggleVoiceNarration()" title="Mute/Unmute Voice Narration (M)">
-                                    <span id="voice-icon">🔊</span>
-                                </button>
-                                <button class="ctrl-btn active" id="captions-toggle-btn" onclick="toggleCaptions()" title="Toggle Captions (C)">
-                                    <span style="font-size:10px; font-weight:800; border:1px solid currentColor; padding:1px 3px; border-radius:3px;">CC</span>
-                                </button>
-                                <button class="ctrl-btn" onclick="cycleVideoSpeed()" id="speed-btn" title="Change Playback Speed">
-                                    <span>1.0×</span>
-                                </button>
-                                <button class="ctrl-btn" onclick="toggleTheaterMode()" title="Theater Mode (Esc)">
-                                    <span>⛶</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. NASA Space Reel Stage -->
-                <div class="video-nasa-stage" id="stage-nasa" style="display: none;">
-                    <iframe class="nasa-embed-frame" 
-                            src="https://www.youtube-nocookie.com/embed/RMINSD7MmT4?rel=0" 
-                            title="Apollo 11 First Moonwalk - Restored NASA Footage" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen></iframe>
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; font-size: 12px; color: var(--muted); flex-wrap: wrap; gap: 8px;">
-                        <span>🚀 Official NASA Public Domain Mission Footage &bull; Apollo 11 Lunar Surface Walk</span>
-                        <a href="https://images.nasa.gov" target="_blank" rel="noopener" style="color: var(--accent-light); font-weight: 600;">Visit NASA Image &amp; Video Library &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- 3. 3-Step Quick Guide Stage (Inside Frame) -->
-                <div class="video-guide-stage" id="stage-guide" style="display: none; padding: 24px; height: 100%; overflow-y: auto;">
-                    <div style="text-align: center; max-width: 650px; margin: 0 auto 20px;">
-                        <span class="eyebrow-accent">💡 QUICK ONBOARDING GUIDE</span>
-                        <h3 style="font-size: 20px; color: #fff; margin: 6px 0;">3 Steps to Mastering Earth &amp; Moon Atlas</h3>
-                    </div>
-                    <div class="onboarding-grid" style="margin: 0;">
-                        <div class="onboarding-card">
-                            <div class="onboarding-icon-wrap" style="background: rgba(56, 189, 248, 0.15); color: var(--blue);">🌍</div>
-                            <div class="onboarding-badge">STEP 1 • DISCOVER</div>
-                            <h3>What is an Analog?</h3>
-                            <p>Deserts, volcanic caves, and impact craters on Earth that closely mirror the geology and harshness of the Moon.</p>
-                            <div class="onboarding-footer">
-                                <a href="compare.html" class="onboarding-link">See 7 Pairs &rarr;</a>
-                            </div>
-                        </div>
-                        <div class="onboarding-card">
-                            <div class="onboarding-icon-wrap" style="background: rgba(251, 191, 36, 0.15); color: var(--amber);">🧑‍🚀</div>
-                            <div class="onboarding-badge">STEP 2 • TRAIN</div>
-                            <h3>Why Earth?</h3>
-                            <p>NASA &amp; ESA test rovers, spacesuit joints, and oxygen extraction right here before spending billions launching into space.</p>
-                            <div class="onboarding-footer">
-                                <a href="location.html" class="onboarding-link">Testing Sites &rarr;</a>
-                            </div>
-                        </div>
-                        <div class="onboarding-card">
-                            <div class="onboarding-icon-wrap" style="background: rgba(129, 140, 248, 0.15); color: var(--accent);">🔬</div>
-                            <div class="onboarding-badge">STEP 3 • EXPERIMENT</div>
-                            <h3>Explore Tools</h3>
-                            <p>Calculate your jump height in 1/6th gravity, observe the real-time Moon orbit, and view Apollo landing archives.</p>
-                            <div class="onboarding-footer">
-                                <a href="methodology.html" class="onboarding-link">Gravity Tool &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dynamic Action Bar Synced with Video Chapter -->
-            <div class="video-jump-bar" id="video-jump-bar">
-                <div class="jump-info">
-                    <span id="jump-tag">CURRENT CHAPTER:</span>
-                    <b id="jump-title">Earth &amp; Moon Analog Science</b>
-                    <span id="jump-desc">Learn how extreme earthly landscapes simulate lunar missions.</span>
-                </div>
-                <a id="jump-action-btn" href="compare.html" class="btn btn-primary btn-sm">
-                    Explore 7 Lookalike Pairs &rarr;
-                </a>
-            </div>
-        </section>
-
-        <!-- 3-Step Quick Explainer Onboarding Section -->
-        <section class="onboarding-guide-section" id="quick-explainer">
-            <div style="text-align: center; max-width: 680px; margin: 0 auto 24px;">
-                <span class="eyebrow-accent">💡 NEW TO EARTH ANALOGS?</span>
-                <h2 style="font-size: 26px; font-weight: 800; margin: 6px 0 8px;">What This Platform is All About</h2>
-                <p style="color: var(--text-dim); font-size: 14px;">Everything you need to know in three quick, easy-to-understand concepts:</p>
-            </div>
-            <div class="onboarding-grid">
-                <div class="onboarding-card">
-                    <div class="onboarding-icon-wrap" style="background: rgba(56, 189, 248, 0.15); color: var(--blue);">🌍</div>
-                    <div class="onboarding-badge">STEP 1 • DISCOVER</div>
-                    <h3>What is an Earth Analog?</h3>
-                    <p>
-                        An "Earth Analog" is a location on our planet whose geology, climate, or rock chemistry mirrors another world. Chile’s dry Atacama Desert mimics volcanic lunar plains, and Spanish lava caves mirror subsurface moon shelters!
-                    </p>
-                    <div class="onboarding-footer">
-                        <a href="compare.html" class="onboarding-link">See 7 Lookalike Pairs &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="onboarding-card">
-                    <div class="onboarding-icon-wrap" style="background: rgba(251, 191, 36, 0.15); color: var(--amber);">🧑‍🚀</div>
-                    <div class="onboarding-badge">STEP 2 • TRAIN</div>
-                    <h3>Why Do Space Agencies Use Them?</h3>
-                    <p>
-                        Launching rockets is risky and costs billions. NASA, ESA, and JAXA test robot rover wheels, pressurized spacesuits, drilling tools, and life support systems in Earth's extreme deserts and caves to prevent fatal mission failures.
-                    </p>
-                    <div class="onboarding-footer">
-                        <a href="location.html" class="onboarding-link">Inspect Field Test Sites &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="onboarding-card">
-                    <div class="onboarding-icon-wrap" style="background: rgba(129, 140, 248, 0.15); color: var(--accent);">🔬</div>
-                    <div class="onboarding-badge">STEP 3 • EXPERIMENT</div>
-                    <h3>What Can You Do on This Site?</h3>
-                    <p>
-                        Explore side-by-side satellite comparisons, test how high you could jump in the Moon’s 1/6th gravity, watch live orbital motion, and inspect Apollo moon landing archives—all powered by real NASA and USGS scientific telemetry!
-                    </p>
-                    <div class="onboarding-footer">
-                        <a href="methodology.html" class="onboarding-link">Try Gravity Simulator &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 10-Second Concept Demo Switcher -->
-        <section class="concept-demo-box">
-            <div class="concept-demo-header">
-                <div>
-                    <span class="eyebrow-accent">⚡ 10-SECOND CONCEPT DEMO</span>
-                    <h3 style="font-size: 19px; margin-top: 4px;">See Earth &amp; Moon Lookalikes Side-by-Side</h3>
-                    <p style="color: var(--text-dim); font-size: 13px;">Click a pair below to see why NASA tests lunar equipment in these specific Earth locations:</p>
-                </div>
-                <div class="concept-tabs-row">
-                    <button class="concept-tab-btn active" data-key="atacama" onclick="selectConceptDemo('atacama')">
-                        🏜️ Atacama vs Ocean of Storms
-                    </button>
-                    <button class="concept-tab-btn" data-key="lanzarote" onclick="selectConceptDemo('lanzarote')">
-                        🌋 Lanzarote vs Marius Hills
-                    </button>
-                    <button class="concept-tab-btn" data-key="polar" onclick="selectConceptDemo('polar')">
-                        ❄️ McMurdo vs Shackleton Crater
-                    </button>
-                </div>
-            </div>
-
-            <div id="concept-demo-display">
-                <!-- Dynamically populated by assets/video-tour.js -->
-            </div>
-        </section>
-
-        <!-- Friendly Beginner Guide Banner -->
+        <!-- Scientific Data Integrity Banner -->
         <div class="beginner-guide-banner">
-            <div class="beginner-guide-icon">💡</div>
+            <div class="beginner-guide-icon">🛰️</div>
             <div>
-                <h4>Grounded in Real Space Agency Mission Archives</h4>
+                <h4>Peer-Reviewed Planetary Data &amp; Field Mission Science</h4>
                 <p>
-                    Every number, elevation metric, temperature swing, and rover test protocol on this platform is cited directly from official NASA Planetary Data System (PDS), USGS Astrogeology, Apollo Surface Logs, and ESA Planetary Science Archives.
+                    Every elevation differential, thermal swing, regolith composition metric, and field testing protocol across this platform is synthesized directly from official NASA Planetary Data System (PDS), USGS Astrogeology Science Center, Apollo Surface Experiment Packages (ALSEP), and Lunar Reconnaissance Orbiter (LRO) datasets.
                 </p>
             </div>
         </div>
@@ -369,7 +112,7 @@
             <div>
                 <span class="eyebrow-accent">🪐 TWO CELESTIAL BODIES • SIDE-BY-SIDE</span>
                 <h1>Planet Earth vs The Moon at a Glance</h1>
-                <p>Compare the key facts, size, gravity, and atmospheres of our home planet and its closest celestial neighbor.</p>
+                <p>Compare the key astrophysical baselines, physical dimensions, gravitational forces, and atmospheric properties of Earth and its natural satellite.</p>
             </div>
             <a href="methodology.html" class="btn btn-ghost btn-sm">Interactive Gravity Calculator &rarr;</a>
         </div>
@@ -385,48 +128,48 @@
                     <span style="font-weight: 700; font-size: 13px; color: var(--blue);">1.00g Normal Gravity</span>
                 </div>
                 <p class="sphere-desc">
-                    A vibrant blue marble covered with deep oceans, an oxygen-rich atmosphere that sustains life, and an active magnetic field that shields us from harmful solar radiation.
+                    A vibrant planetary body covered with liquid oceans, an oxygen-rich atmosphere sustaining active hydrological cycles, and a convective geomagnetic dynamo shielding the surface from cosmic rays.
                 </p>
                 <div class="sphere-metrics-table">
                     <div class="metric-cell">
-                        <span>Equatorial Radius (Size)</span>
+                        <span>Equatorial Radius</span>
                         <b>6,378 km</b>
                         <small>Nearly 4× wider than Moon</small>
                     </div>
                     <div class="metric-cell">
                         <span>Surface Gravity</span>
                         <b>9.81 m/s² (1.00g)</b>
-                        <small>Our normal Earth weight</small>
+                        <small>Standard terrestrial baseline</small>
                     </div>
                     <div class="metric-cell">
                         <span>Planetary Mass</span>
                         <b>5.97 × 10²⁴ kg</b>
-                        <small>81× heavier than the Moon</small>
+                        <small>81.3× heavier than Moon</small>
                     </div>
                     <div class="metric-cell">
-                        <span>Speed to Reach Space</span>
-                        <b>11.2 km/s (40,300 km/h)</b>
-                        <small>Escape velocity threshold</small>
+                        <span>Escape Velocity</span>
+                        <b>11.2 km/s (40,320 km/h)</b>
+                        <small>Required speed to reach space</small>
                     </div>
                     <div class="metric-cell">
                         <span>Atmosphere</span>
-                        <b>78% Nitrogen, 21% Oxygen</b>
-                        <small>Full breathable air pressure</small>
+                        <b>78% N₂, 21% O₂</b>
+                        <small>101.3 kPa standard pressure</small>
                     </div>
                     <div class="metric-cell">
                         <span>Natural Radiation Shield</span>
                         <b>Low (2.4 mSv/year)</b>
-                        <small>Protected by magnetic field</small>
+                        <small>Shielded by geomagnetic field</small>
                     </div>
                     <div class="metric-cell">
-                        <span>Axial Tilt (Seasons)</span>
+                        <span>Axial Tilt</span>
                         <b>23.44°</b>
-                        <small>Gives Earth summer &amp; winter</small>
+                        <small>Generates regular seasons</small>
                     </div>
                     <div class="metric-cell">
-                        <span>Day Length</span>
-                        <b>24 Hours</b>
-                        <small>One full day/night rotation</small>
+                        <span>Sidereal Day</span>
+                        <b>24.00 Hours</b>
+                        <small>One planetary rotation cycle</small>
                     </div>
                 </div>
             </div>
@@ -441,59 +184,59 @@
                     <span style="font-weight: 700; font-size: 13px; color: var(--amber);">0.165g (1/6th Gravity)</span>
                 </div>
                 <p class="sphere-desc">
-                    A timeless, crater-covered world with no air and no weather. Because there is no wind or water erosion, footprints left by Apollo astronauts over 50 years ago remain untouched.
+                    An airless, cratered world with an ancient basaltic and anorthositic crust. Devoid of wind and liquid water erosion, surface impacts and astronaut footprints remain pristine for millions of years.
                 </p>
                 <div class="sphere-metrics-table">
                     <div class="metric-cell">
-                        <span>Mean Radius (Size)</span>
-                        <b>1,737 km (27% of Earth)</b>
-                        <small>Roughly the width of Australia</small>
+                        <span>Mean Radius</span>
+                        <b>1,737 km (27.3% Earth)</b>
+                        <small>Approx. the width of Australia</small>
                     </div>
                     <div class="metric-cell">
                         <span>Surface Gravity</span>
                         <b>1.62 m/s² (0.165g)</b>
-                        <small>You weigh 6× less here!</small>
+                        <small>You weigh 83.5% less here</small>
                     </div>
                     <div class="metric-cell">
                         <span>Lunar Mass</span>
                         <b>7.34 × 10²² kg (1.2%)</b>
-                        <small>Light celestial body</small>
+                        <small>Relatively low celestial mass</small>
                     </div>
                     <div class="metric-cell">
-                        <span>Speed to Reach Space</span>
+                        <span>Escape Velocity</span>
                         <b>2.38 km/s (8,570 km/h)</b>
-                        <small>Much easier to launch rockets!</small>
+                        <small>Allows lighter departure stages</small>
                     </div>
                     <div class="metric-cell">
                         <span>Atmosphere</span>
-                        <b>Near-Total Vacuum</b>
-                        <small>No air to breathe or trap heat</small>
+                        <b>Near-Total Vacuum (Exosphere)</b>
+                        <small>3 × 10⁻¹⁵ bar pressure</small>
                     </div>
                     <div class="metric-cell">
                         <span>Space Radiation</span>
-                        <b>High (380–420 mSv/yr)</b>
-                        <small>Astronauts need shielded bases</small>
+                        <b>High (380–420 mSv/year)</b>
+                        <small>Requires shielded regolith habitats</small>
                     </div>
                     <div class="metric-cell">
                         <span>Axial Tilt</span>
                         <b>1.54°</b>
-                        <small>Permanent shadows in craters</small>
+                        <small>Permanently shadowed polar craters</small>
                     </div>
                     <div class="metric-cell">
-                        <span>Day Length</span>
-                        <b>29.5 Earth Days</b>
-                        <small>2 weeks of sun, 2 weeks night</small>
+                        <span>Synodic Day Length</span>
+                        <b>29.53 Earth Days</b>
+                        <small>14 Earth days day, 14 days night</small>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Interactive Orbit & Moon Phases Simulator (Apple-Inspired Canvas Showcase) -->
-        <div class="page-heading">
+        <!-- Section 2: Interactive Orbit & Moon Phases Engine -->
+        <div class="page-heading" id="orbital-engine">
             <div>
                 <span class="eyebrow-accent">🛰️ LIVE CELESTIAL ORBIT &amp; LUNAR PHASES</span>
                 <h1>Earth &amp; Moon Orbital Mechanics</h1>
-                <p>Observe how the Moon orbits Earth in real-time, how sunlight angles create lunar phases, and see live telemetry updates.</p>
+                <p>Observe how the Moon orbits Earth in real-time, how varying solar illumination angles generate distinct lunar phases, and monitor live telemetry.</p>
             </div>
         </div>
 
@@ -517,97 +260,97 @@
             <div style="background: var(--card-surface); border-radius: var(--radius-sm); border: 1px solid var(--line); overflow: hidden; position: relative;">
                 <canvas id="orbit-canvas" style="width: 100%; height: 280px; display: block;"></canvas>
                 <div style="position: absolute; bottom: 10px; left: 14px; font-size: 11px; color: var(--muted); pointer-events: none;">
-                    ☀️ Sunlight direction from left &bull; Orbit distance: ~384,400 km
+                    ☀️ Solar incidence angle from left &bull; Mean semi-major axis: 384,400 km
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Core Platform Navigation Grid -->
+        <!-- Section 3: Core Research Navigation Modules -->
         <div class="page-heading">
             <div>
-                <span class="eyebrow-accent">🚀 INTERACTIVE MODULES</span>
-                <h1>Explore the Earth &amp; Moon Dashboard</h1>
-                <p>Everything is easy to navigate — compare lookalike terrain, browse Apollo moonwalk photos, or test our live physics tools.</p>
+                <span class="eyebrow-accent">🚀 PRIMARY RESEARCH MODULES</span>
+                <h1>Explore the Atlas Architecture</h1>
+                <p>Curated scientific tools to compare terrestrial analogs, inspect Apollo landing sites, and model planetary gravitational physics.</p>
             </div>
         </div>
 
         <div class="grid-three">
             <a class="card" href="compare.html">
                 <span class="eyebrow-accent">01 • LOOKALIKE PAIRS</span>
-                <h3 style="margin: 8px 0;">7 Side-by-Side Earth &amp; Moon Pairs</h3>
+                <h3 style="margin: 8px 0;">7 Terrestrial &amp; Lunar Analogs</h3>
                 <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
-                    See extreme Earth mountains, deep ocean trenches, and volcanic caves matched directly with their lunar counterparts.
+                    Compare hyper-arid desert plateaus, volcanic lava tubes, impact craters, and polar glaciers against corresponding lunar landmarks.
                 </p>
-                <span class="btn btn-ghost btn-sm">Explore Pairs &rarr;</span>
+                <span class="btn btn-ghost btn-sm">Explore 7 Pairs &rarr;</span>
             </a>
 
             <a class="card" href="explore.html">
                 <span class="eyebrow-accent">02 • MOON MISSIONS</span>
-                <h3 style="margin: 8px 0;">Apollo Landings &amp; Giant Craters</h3>
+                <h3 style="margin: 8px 0;">Apollo Landings &amp; Impact Craters</h3>
                 <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
-                    Explore all 6 Apollo crewed landing sites, robotic probes, ancient lava plains, and nearby deep-space asteroids.
+                    Explore all 6 Apollo crewed landing coordinates, robotic probes, lunar maria formations, and deep-space asteroid orbits.
                 </p>
-                <span class="btn btn-ghost btn-sm">Explore Moon Sites &rarr;</span>
+                <span class="btn btn-ghost btn-sm">Inspect Moon Sites &rarr;</span>
             </a>
 
             <a class="card" href="results.html">
-                <span class="eyebrow-accent">03 • WORLD MAP</span>
-                <h3 style="margin: 8px 0;">Global Testing Stations Map</h3>
+                <span class="eyebrow-accent">03 • STATIONS MAP</span>
+                <h3 style="margin: 8px 0;">Global Planetary Analog Radar</h3>
                 <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
-                    Interactive world map highlighting testing stations in Hawaii, Chile, Canary Islands, Svalbard, and Antarctica.
+                    Interactive world map pinpointing active research facilities in Chile, Hawaii, Canary Islands, Svalbard, and Antarctica.
                 </p>
-                <span class="btn btn-ghost btn-sm">Open World Map &rarr;</span>
+                <span class="btn btn-ghost btn-sm">Open Stations Map &rarr;</span>
             </a>
 
             <a class="card" href="location.html">
                 <span class="eyebrow-accent">04 • FIELD EVALUATION</span>
-                <h3 style="margin: 8px 0;">Rover &amp; Spacesuit Testing Sites</h3>
+                <h3 style="margin: 8px 0;">Rover &amp; EVA Hardware Testing</h3>
                 <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
-                    Take a deep-dive look into how scientists test robot wheels, suit mobility, and lunar oxygen extraction in the desert.
+                    Technical analysis of how space agencies validate rover mobility, spacesuit articulation, and in-situ resource utilization (ISRU).
                 </p>
-                <span class="btn btn-ghost btn-sm">Inspect Site Details &rarr;</span>
+                <span class="btn btn-ghost btn-sm">Inspect Field Protocols &rarr;</span>
             </a>
 
             <a class="card" href="methodology.html">
-                <span class="eyebrow-accent">05 • FUN PHYSICS</span>
-                <h3 style="margin: 8px 0;">Live Gravity &amp; Weight Calculator</h3>
+                <span class="eyebrow-accent">05 • GRAVITATIONAL PHYSICS</span>
+                <h3 style="margin: 8px 0;">Interactive Gravity &amp; Jump Engine</h3>
                 <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
-                    Adjust planet size and mass to instantly see how much you would weigh and how high you could jump on other worlds.
+                    Adjust planetary mass and radius dynamically to compute surface gravity, escape velocity, and human jump height in real-time.
                 </p>
-                <span class="btn btn-ghost btn-sm">Try Physics Engine &rarr;</span>
+                <span class="btn btn-ghost btn-sm">Launch Gravity Tool &rarr;</span>
             </a>
 
             <a class="card" href="about.html">
                 <span class="eyebrow-accent">06 • VERIFIED SOURCES</span>
-                <h3 style="margin: 8px 0;">NASA &amp; USGS Science Archives</h3>
+                <h3 style="margin: 8px 0;">NASA &amp; USGS Data Citations</h3>
                 <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 16px;">
-                    All coordinates, elevation numbers, and temperatures come directly from official NASA and European Space Agency datasets.
+                    Peer-reviewed citations, orbital telemetry sources, LROC imagery repositories, and planetary science references.
                 </p>
                 <span class="btn btn-ghost btn-sm">View Scientific Sources &rarr;</span>
             </a>
         </div>
 
-        <!-- Featured Analog Highlight Strip -->
+        <!-- Section 4: Featured Analog Spotlight -->
         <section class="card" style="margin-top: 32px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center;">
             <div>
-                <span class="eyebrow-accent">🌟 FEATURED LOOKALIKE SPOTLIGHT</span>
-                <h2 style="font-size: 24px; margin: 6px 0 10px;">Atacama Desert (Chile) &harr; Ocean of Storms (Moon)</h2>
+                <span class="eyebrow-accent">🌟 FEATURED TERRESTRIAL ANALOG</span>
+                <h2 style="font-size: 24px; margin: 6px 0 10px;">Atacama Desert (Chile) &harr; Oceanus Procellarum (Moon)</h2>
                 <p style="color: var(--text-dim); font-size: 13.5px; line-height: 1.65; margin-bottom: 18px;">
-                    High up at 5,050 meters on the Chajnantor Plateau in Chile, the air has almost zero humidity and intense UV radiation. It is the closest thing on Earth to walking on the massive volcanic plains of the Moon's Ocean of Storms!
+                    Situated at 5,050 meters on Chile's Chajnantor Plateau, near-zero atmospheric moisture and intense ultraviolet radiation provide Earth's premier terrestrial analog for the vast basaltic mare of Oceanus Procellarum.
                 </p>
                 <button class="btn btn-primary btn-sm" onclick="openDifferentialModal('pair-hyper-arid-plains')">
                     Compare Side-by-Side Details &rarr;
                 </button>
             </div>
             <div style="background: var(--card-surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px;">
-                <span class="eyebrow-accent" style="color: var(--accent);">QUICK COMPARISON</span>
+                <span class="eyebrow-accent" style="color: var(--accent);">TELEMETRY DIFFERENTIAL</span>
                 <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px;">
-                    <span style="color: var(--muted);">Elevation Difference</span>
-                    <b style="font-weight: 700;">6,250 meters delta</b>
+                    <span style="color: var(--muted);">Elevation Delta</span>
+                    <b style="font-weight: 700;">6,250 meters differential</b>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px;">
-                    <span style="color: var(--muted);">Temperature Swing</span>
-                    <b style="color: var(--amber); font-weight: 700;">204°C wider swing on Moon!</b>
+                    <span style="color: var(--muted);">Thermal Swing</span>
+                    <b style="color: var(--amber); font-weight: 700;">204°C wider swing on Moon</b>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 13px;">
                     <span style="color: var(--muted);">Surface Gravity</span>
@@ -621,8 +364,8 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-left">
-                <b>EARTH &amp; MOON ATLAS • ORBITAL EDITORIAL</b>
-                <p>Built with verified data from NASA Planetary Data System (PDS), USGS Astrogeology &amp; Apollo Archives.</p>
+                <b>ANALOG ATLAS • EARTH &amp; MOON RESEARCH</b>
+                <p>NASA Planetary Data System (PDS) &bull; USGS Astrogeology &bull; Apollo Lunar Archives &bull; LROC</p>
             </div>
             <div class="footer-links">
                 <a href="https://pds.nasa.gov" target="_blank" rel="noopener">NASA PDS</a>
@@ -635,16 +378,18 @@
 
     <script src="assets/data.js"></script>
     <script src="assets/app.js"></script>
-    <script src="assets/video-tour.js"></script>
     <script>
-        // Interactive Orbit & Moon Phase Canvas
+        // ==========================================================================
+        // INTERACTIVE ORBIT & MOON PHASE SIMULATOR
+        // ==========================================================================
         let orbitAngle = 0;
         let orbitSpeed = 0.015;
         let orbitPlaying = true;
 
         function toggleOrbitPlay() {
             orbitPlaying = !orbitPlaying;
-            document.getElementById('orbit-play-btn').textContent = orbitPlaying ? 'Pause Orbit' : 'Resume Orbit';
+            const btn = document.getElementById('orbit-play-btn');
+            if (btn) btn.textContent = orbitPlaying ? 'Pause Orbit' : 'Resume Orbit';
         }
 
         function setOrbitSpeed(val) {
@@ -748,6 +493,10 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initOrbitSimulation();
+            const heroVid = document.querySelector('.hero-video-element');
+            if (heroVid) {
+                heroVid.play().catch(() => {});
+            }
         });
     </script>
 </body>
